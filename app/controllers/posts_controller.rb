@@ -1,15 +1,18 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  include Commentable
+  before_action :set_post, only: [ :edit, :update, :destroy]
 
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    @posts = Post.where(ancestry_depth: 0)
   end
 
   # GET /posts/1
   # GET /posts/1.json
   def show
+    @parent = Post.find(params[:id])
+    @posts = @parent.descendants.arrange
   end
 
   # GET /posts/new
