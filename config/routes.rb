@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  resources :posts
+  devise_for :users
+  resources :posts, except: [:update, :edit, :destroy]
   root 'posts#index'
 
   post 'posts/:parent_post/comments', to: 'posts#create_comment', as: 'post_comment'

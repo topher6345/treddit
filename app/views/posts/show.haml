@@ -4,13 +4,19 @@
     submitted: #{time_ago_in_words(@parent.created_at)} ago
   %article
     = @parent.body
-  %a reply
-  = form_tag(post_comment_path(parent_post: @parent), method: 'post') do
-    %p= text_area_tag(:body)
-    = submit_tag("save")
+  = link_to 'reply', new_user_session_path
+  - if user_signed_in?
+    = form_tag(post_comment_path(parent_post: @parent), method: 'post') do
+      %p= text_area_tag(:body)
+      = submit_tag("save")
+      = arranged_tree_as_list(@posts) do |post|
+        %article= post.body
+        %a reply
+        - if user_signed_in?
+          = form_tag(post_comment_path(parent_post: post), method: 'post') do
+            %p= text_area_tag(:body)
+            = submit_tag("save")
+  - else
     = arranged_tree_as_list(@posts) do |post|
       %article= post.body
-      %a reply
-      = form_tag(post_comment_path(parent_post: post), method: 'post') do
-        %p= text_area_tag(:body)
-        = submit_tag("save")
+      = link_to 'reply', new_user_session_path
