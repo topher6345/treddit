@@ -1,3 +1,27 @@
-// Place all the styles related to the Posts controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+$aside-text: #a8a8a8;
+
+.posts-index,
+.posts-show {
+  padding: 5px;
+}
+
+header {
+  font-size: 2em;
+}
+
+aside {
+  font-weight: 700;
+  color: $aside-text;
+}
+
+.post-location {
+  color: $aside-text;
+  font-size: .5em;
+}
+
+
+.post-show {
+  article {
+    padding: 20px;
+  }
+}

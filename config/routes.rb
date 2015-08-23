@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :posts
+  root 'posts#index'
 
   post 'posts/:parent_post/comments', to: 'posts#create_comment', as: 'post_comment'
   # The priority is based upon order of creation: first created -> highest priority.
