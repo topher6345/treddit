@@ -1,23 +1,31 @@
 <p id="notice"><%= notice %></p>
 <h1>Treddit</h1>
 <h2> Front Page</h2>
-<%= link_to 'Submit', new_post_path %>
+<%= link_to 'Submit New Post', new_post_path %>
 <table>
   <thead>
     <tr>
       <th></th>
       <th></th>
-      <th colspan="3"></th>
     </tr>
   </thead>
   <tbody>
     <% @posts.each.with_index(1) do |post, index| %>
       <tr>
         <td><%= index %></td>
-        <td><%= post.title %></td>
-        <td><%= link_to 'Show', post %></td>
-        <td><%= link_to 'Edit', edit_post_path(post) %></td>
-        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if post.link.blank? %>
+          <td>
+            <%= link_to post.title, post %>
+            </br>
+            <%= link_to 'comments', post %>
+          </td>
+        <% else %>
+          <td>
+            <%= link_to post.title, post.link, target: "_blank" %>
+            </br>
+            <%= link_to 'comments', post %>
+          </td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
