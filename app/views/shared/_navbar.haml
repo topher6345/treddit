@@ -1,0 +1,21 @@
+%nav.top-bar{"data-topbar" => "", :role => "navigation"}
+  %ul.title-area
+    %li.name
+      %h1
+        = link_to 'Treddit', root_path
+  %section.top-bar-section
+    -if user_signed_in?
+      %ul.right
+        %li
+          %a Logged in as #{current_user.email}
+        %li
+          = link_to('Logout', destroy_user_session_path, :method => :delete)
+    - else
+      %ul.right
+        %li
+          = link_to('Login', new_user_session_path)
+        %li
+          = link_to('Register', new_user_registration_path)
+    %ul.left
+      %li
+        %a A clone of the front page of the internet

@@ -1,9 +1,10 @@
 module Commentable
   extend ActiveSupport::Concern
+
   def create_comment
     @parent = Post.find(comment_params[:parent_post])
     @post = @parent.children
-                   .create(body: comment_params[:body])
+                   .create(body: comment_params[:body], user_id: current_user.id)
 
     respond_to do |format|
       if @post.save
