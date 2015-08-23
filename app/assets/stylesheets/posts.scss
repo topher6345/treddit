@@ -21,7 +21,21 @@ aside {
 
 
 .post-show {
+  padding: 20px;
   article {
     padding: 20px;
+    background-color: #F6F6F6;
   }
+  form {
+    padding: 20px;
+  }
+
+  li {
+    list-style: none;
+  }
+}
+
+.post-form {
+  max-width: 800px;
+  margin: 0 auto;
 }

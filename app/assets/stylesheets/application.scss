@@ -14,3 +14,11 @@
  *= require_self
  *= require foundation_and_overrides
  */
+
+
+.site-logo {
+  margin-bottom: 0;
+  a {
+    color: black;
+  }
+}

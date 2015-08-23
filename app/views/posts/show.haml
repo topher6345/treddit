@@ -1,16 +1,16 @@
 .post-show
-  = link_to 'Back', posts_path
   %h2= @parent.title
   %aside
     submitted: #{time_ago_in_words(@parent.created_at)} ago
-  %article= @parent.body
+  %article
+    = @parent.body
   %a reply
   = form_tag(post_comment_path(parent_post: @parent), method: 'post') do
     %p= text_area_tag(:body)
     = submit_tag("save")
-  = arranged_tree_as_list(@posts) do |post|
-    %p= post.body
-    %a reply
-    = form_tag(post_comment_path(parent_post: post), method: 'post') do
-      %p= text_area_tag(:body)
-      = submit_tag("save")
+    = arranged_tree_as_list(@posts) do |post|
+      %article= post.body
+      %a reply
+      = form_tag(post_comment_path(parent_post: post), method: 'post') do
+        %p= text_area_tag(:body)
+        = submit_tag("save")
