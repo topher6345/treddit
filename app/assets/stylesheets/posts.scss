@@ -1,6 +1,6 @@
 $aside-text: #a8a8a8;
 $darker-background: #f6f6f6;
-
+$primary-color: #008CBA;
 .posts-index,
 .posts-show {
   padding: 5px;
@@ -24,9 +24,25 @@ aside {
 .post-show {
   padding: 20px;
 
+  section {
+    border: 1px solid lightgrey;
+    background-color: white;
+  }
   article {
-    background-color: $darker-background;
-    padding: 20px;
+    padding: 20px 20px 20px 40px;
+  }
+
+  header {
+    padding-left: 20px;
+    font-size: 1em;
+  }
+  .post-points {
+    color: black;
+    font-weight: 700;
+  }
+
+  section:nth-child(odd) {
+    background-color: darken(white, 5%);
   }
 
   form {
@@ -36,6 +52,15 @@ aside {
   li {
     list-style: none;
   }
+
+  nav {
+    padding: 0 20px 20px;
+  }
+}
+
+.post-show-user {
+  font-weight: 700;
+  color: $primary-color;
 }
 
 .post-form {
@@ -43,6 +68,16 @@ aside {
   max-width: 800px;
 }
 
+.post-row {
+  nav {
+    font-weight: 700;
+  }
+}
+
 .post-row:nth-child(odd) {
   background-color: $darker-background;
+}
+
+.post-user {
+  font-weight: 400;
 }

@@ -4,14 +4,16 @@
     %span.post-location (self)
   %aside
     submitted: #{time_ago_in_words(post.created_at)} ago by
-    %span
+    %span.post-user
       = post.email
-  %nav= link_to 'comments', post
+  %nav= link_to "#{post.subtree.count} comments", post
 - else
   %header
     = link_to post.title, post.link, target: "_blank"
     %span.post-location
       (#{post.link})
   %aside
-    submitted: #{time_ago_in_words(post.created_at)} ago
-  %nav= link_to 'comments', post
+    submitted: #{time_ago_in_words(post.created_at)} ago by
+    %span.post-user
+      = post.email
+  %nav= link_to "#{post.subtree.count} comments", post
