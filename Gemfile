@@ -12,6 +12,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'ancestry'
 gem 'haml-rails'
 gem 'devise'
+gem 'jquery-turbolinks'
 gem 'foundation-icons-sass-rails'
 group :development, :test do
   gem 'byebug'
