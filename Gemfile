@@ -14,6 +14,7 @@ gem 'haml-rails'
 gem 'devise'
 gem 'jquery-turbolinks'
 gem 'foundation-icons-sass-rails'
+gem 'rails_12factor'
 group :development, :test do
   gem 'byebug'
   gem 'web-console', '~> 2.0'
