@@ -4,7 +4,7 @@
     %span.post-show-user
       #{post.email}
       %i.fi-graph-trend.post-points
-      %span.post-points #{post.descendants.count} points
+      %span.post-points=points(post.descendants.count)
     %i.fi-clock
     %span #{time_ago_in_words(post.created_at)} ago
   %article
