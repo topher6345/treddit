@@ -11,7 +11,7 @@ header {
 }
 
 aside {
-  font-weight: 700;
+  font-weight: 400;
   color: $aside-text;
 }
 
@@ -79,5 +79,7 @@ aside {
 }
 
 .post-user {
-  font-weight: 400;
+  font-weight: 700;
+  color: $primary-color;
+
 }

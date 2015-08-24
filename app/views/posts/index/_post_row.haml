@@ -3,7 +3,7 @@
     = link_to post.title, post
     %span.post-location (self)
   %aside
-    submitted: #{time_ago_in_words(post.created_at)} ago by
+    submitted #{time_ago_in_words(post.created_at)} ago by
     %span.post-user
       = post.email
   %nav= link_to "#{post.subtree.count} comments", post

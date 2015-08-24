@@ -19,9 +19,10 @@
 
 $(function(){ $(document).foundation(); });
 
-$(document).on('ready', function(){
+$(document).on('page:load', function(){
   $('.reply-button').on('click', function() {
     console.log($(this).data('id'));
     $('#'+$(this).data('id')).toggleClass('hide')
   });
 });
+
