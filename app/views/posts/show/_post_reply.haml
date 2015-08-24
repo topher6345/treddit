@@ -1,0 +1,13 @@
+// Shows the post and a form to submit a comment
+%article
+  = post.body
+%aside
+  submitted: #{time_ago_in_words(post.created_at)} ago
+  %span
+    = post .email
+- if user_signed_in?
+  = form_tag(post_comment_path(parent_post: post), method: 'post') do
+    %p= text_area_tag(:body)
+    = submit_tag("save")
+- else
+  = link_to 'reply', new_user_session_path

@@ -1,26 +1,5 @@
 .post-show
-  %h2= @parent.title
-  %aside
-    submitted: #{time_ago_in_words(@parent.created_at)} ago
-  %article
-    = @parent.body
-  = link_to 'reply', new_user_session_path
-  - if user_signed_in?
-    = form_tag(post_comment_path(parent_post: @parent), method: 'post') do
-      %p= text_area_tag(:body)
-      = submit_tag("save")
-      = arranged_tree_as_list(@posts) do |post|
-        %article= post.body
-        %aside
-          submitted: #{time_ago_in_words(post.created_at)} ago by
-          %span
-            = post.email
-        %a reply
-        - if user_signed_in?
-          = form_tag(post_comment_path(parent_post: post), method: 'post') do
-            %p= text_area_tag(:body)
-            = submit_tag("save")
-  - else
-    = arranged_tree_as_list(@posts) do |post|
-      %article= post.body
-      = link_to 'reply', new_user_session_path
+  = render 'posts/show/post_title', post: @parent
+  = render 'posts/show/post_reply', post: @parent
+  = arranged_tree_as_list(@posts) do |post|
+    = render 'posts/show/post_reply', post: post

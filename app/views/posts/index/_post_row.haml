@@ -1,0 +1,17 @@
+- if post.link.blank?
+  %header
+    = link_to post.title, post
+    %span.post-location (self)
+  %aside
+    submitted: #{time_ago_in_words(post.created_at)} ago by
+    %span
+      = post.email
+  %nav= link_to 'comments', post
+- else
+  %header
+    = link_to post.title, post.link, target: "_blank"
+    %span.post-location
+      (#{post.link})
+  %aside
+    submitted: #{time_ago_in_words(post.created_at)} ago
+  %nav= link_to 'comments', post
