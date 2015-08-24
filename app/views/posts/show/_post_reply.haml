@@ -9,14 +9,17 @@
     %span #{time_ago_in_words(post.created_at)} ago
   %article
     = post.body
-  %nav
-    %i.fi-comment
-    %a(class="reply-button"data-id="form#{post.hash}")
-      reply
+  - if user_signed_in?
+    %nav
+      %i.fi-comment
+      %a(class="reply-button"data-id="form#{post.hash}")
+        reply
   .div
     - if user_signed_in?
       = form_tag(post_comment_path(parent_post: post), method: 'post', id: "form#{post.hash}", class: 'hide') do
         %p= text_area_tag(:body, '')
         = submit_tag("save", )
     - else
-      = link_to 'reply', new_user_session_path
+      %nav
+        %i.fi-comment
+        = link_to 'reply', new_user_session_path, notice: 'You must be logged in to leave comments!'

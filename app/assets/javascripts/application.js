@@ -11,6 +11,7 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery.turbolinks
 //= require jquery_ujs
 //= require foundation
 //= require turbolinks
@@ -19,7 +20,7 @@
 
 $(function(){ $(document).foundation(); });
 
-$(document).on('page:load', function(){
+$(document).ready(function(){
   $('.reply-button').on('click', function() {
     console.log($(this).data('id'));
     $('#'+$(this).data('id')).toggleClass('hide')

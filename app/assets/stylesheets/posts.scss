@@ -81,5 +81,12 @@ aside {
 .post-user {
   font-weight: 700;
   color: $primary-color;
+}
 
+.post-new {
+  position: absolute;
+  right: 0px;
+  background-color: lightgrey;
+  padding: 20px;
+  margin: 0;
 }
