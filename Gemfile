@@ -15,7 +15,8 @@ gem 'haml-rails'
 gem 'devise'
 gem 'jquery-turbolinks'
 gem 'foundation-icons-sass-rails'
-gem 'rails_12factor'
+gem 'rails_12factor', group: :production
+
 group :development, :test do
   gem 'byebug'
   gem 'web-console', '~> 2.0'
@@ -24,4 +25,4 @@ group :development, :test do
   gem 'annotate'
 end
 
-gem 'letter_opener', :group => :development
+gem 'letter_opener', group: :development
