@@ -17,6 +17,7 @@ class PostsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+
   test "should create post" do
     sign_in users(:one)
     assert_difference('Post.count') do
@@ -24,6 +25,26 @@ class PostsControllerTest < ActionController::TestCase
     end
 
     assert_redirected_to post_path(assigns(:post))
+
+    assert_no_difference('Post.count') do
+      post :create, post: { body: nil, title: @post.title }
+    end
+
+  end
+
+  test "should create comment on parent post" do
+    sign_in users(:one)
+    parent_post = @post
+
+    assert_difference('Post.count') do
+      post :create_comment, parent_post: parent_post.id, body: 'A comment'
+    end
+
+    assert_redirected_to post_path(parent_post)
+
+    assert_no_difference('Post.count') do
+      post :create_comment, parent_post: parent_post.id, body: nil
+    end
   end
 
   test "should show post" do
