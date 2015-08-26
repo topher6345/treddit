@@ -1,6 +1,7 @@
 $aside-text: #a8a8a8;
 $darker-background: #f6f6f6;
 $primary-color: #008CBA;
+
 .posts-index,
 .posts-show {
   padding: 5px;
@@ -11,8 +12,8 @@ header {
 }
 
 aside {
-  font-weight: 400;
   color: $aside-text;
+  font-weight: 400;
 }
 
 .post-location {
@@ -25,17 +26,19 @@ aside {
   padding: 20px;
 
   section {
-    border: 1px solid lightgrey;
     background-color: white;
+    border: 1px solid lightgrey;
   }
+
   article {
     padding: 20px 20px 20px 40px;
   }
 
   header {
-    padding-left: 20px;
     font-size: 1em;
+    padding-left: 20px;
   }
+
   .post-points {
     color: black;
     font-weight: 700;
@@ -59,8 +62,8 @@ aside {
 }
 
 .post-show-user {
-  font-weight: 700;
   color: $primary-color;
+  font-weight: 700;
 }
 
 .post-form {
@@ -79,14 +82,23 @@ aside {
 }
 
 .post-user {
-  font-weight: 700;
   color: $primary-color;
+  font-weight: 700;
+}
+
+.post-root-user {
+  background-color: $primary-color;
+  border-radius: 2px;
+  color: white;
+  font-weight: 500;
+  margin-right: 2px;
+  padding: 2px 2px 2px 6px;
 }
 
 .post-new {
-  position: absolute;
-  right: 0px;
   background-color: lightgrey;
-  padding: 20px;
   margin: 0;
+  padding: 20px;
+  position: absolute;
+  right: 0;
 }

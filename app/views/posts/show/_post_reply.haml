@@ -1,8 +1,11 @@
-// Shows the post and a form to submit a comment
 %section
   %header
     %span.post-show-user
-      #{post.email}
+      - if @parent.user == post.user
+        %span.post-root-user
+          #{post.email}
+      - else
+        #{post.email}
       %i.fi-graph-trend.post-points
       %span.post-points=points(post.descendants.count)
     %i.fi-clock
