@@ -11,7 +11,8 @@
 #  ancestry_depth :integer          default(0)
 #  link           :string
 #  user_id        :integer          not null
-#  votes          :integer
+#  votes          :integer          default(0)
+#  subtreddit_id  :integer          not null
 #
 
 require 'test_helper'
