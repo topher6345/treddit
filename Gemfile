@@ -23,6 +23,7 @@ group :development, :test do
   gem 'spring'
   gem 'simplecov'
   gem 'annotate'
+  gem 'quiet_assets'
 end
 
 gem 'letter_opener', group: :development
