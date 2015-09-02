@@ -20,4 +20,13 @@ class UpvoteTest < ActiveSupport::TestCase
       Upvote.create!(user: users(:one), post: posts(:one))
     end
   end
+
+  test 'user can remove their upvote' do
+    assert_difference('posts(:one).votes') do
+      Upvote.create!(user: users(:one), post: posts(:one))
+    end
+    assert_difference('posts(:one).votes') do
+      Upvote.destroy!(user: users(:one), post: posts(:one))
+    end
+  end
 end
