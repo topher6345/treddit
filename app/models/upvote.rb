@@ -9,6 +9,9 @@
 #   # User removes an upvote from a post
 #   Upvote.destroy! user: user, post: post
 #
+class DuplicateUpvote < StandardError; end
+class UpvoteNotFound < StandardError; end
+
 class Upvote
   def self.create!(user:, post:)
     new(user: user, post: post).create_vote.increment_post_votes
@@ -31,6 +34,7 @@ class Upvote
 
   def increment_post_votes
     @post.increment(:votes)
+    @post.save!
     self
   end
 
@@ -42,9 +46,9 @@ class Upvote
 
   def decrement_post_votes
     @post.decrement(:votes)
+    @post.save!
     self
   end
 end
 
-class DuplicateUpvote < StandardError; end
-class UpvoteNotFound < StandardError; end
+
