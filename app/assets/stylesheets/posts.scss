@@ -26,6 +26,7 @@ aside {
   padding: 20px;
 
   section {
+    position: relative;
     background-color: white;
     border: 1px solid lightgrey;
   }
@@ -101,4 +102,28 @@ aside {
   padding: 20px;
   position: absolute;
   right: 0;
+}
+
+.post-vote-col {
+  position: absolute;
+  height: 100%;
+}
+
+.post-upvote-arrow {
+  position: absolute;
+  top: 0;
+  left: .4rem;
+}
+
+.post-upvote-arrow-disabled {
+  position: absolute;
+  top: 0;
+  left: .4rem;
+  color: $primary-color;
+
+}
+
+.post-upvote-arrow:hover {
+  cursor: pointer;
+  color: $primary-color;
 }
