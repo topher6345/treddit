@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150902193130) do
+ActiveRecord::Schema.define(version: 20150902193312) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,9 +26,11 @@ ActiveRecord::Schema.define(version: 20150902193130) do
     t.string   "link"
     t.integer  "user_id",                    null: false
     t.integer  "votes",          default: 0
+    t.integer  "subtreddit_id",              null: false
   end
 
   add_index "posts", ["ancestry"], name: "index_posts_on_ancestry", using: :btree
+  add_index "posts", ["subtreddit_id"], name: "index_posts_on_subtreddit_id", using: :btree
 
   create_table "subtreddits", force: :cascade do |t|
     t.string   "name"
@@ -68,6 +70,7 @@ ActiveRecord::Schema.define(version: 20150902193130) do
 
   add_index "votes", ["user_id", "post_id"], name: "index_votes_on_user_id_and_post_id", unique: true, using: :btree
 
+  add_foreign_key "posts", "subtreddits"
   add_foreign_key "votes", "posts"
   add_foreign_key "votes", "users"
 end
