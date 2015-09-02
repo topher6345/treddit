@@ -1,7 +1,9 @@
 class PostsController < ApplicationController
   include Commentable
+  include Upvoteable
+
   before_action :set_post, only: [ :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:new, :create, :create_comment]
+  before_action :authenticate_user!, only: [:new, :create, :create_comment, :upvote]
 
   # GET /posts
   # GET /posts.json

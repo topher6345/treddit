@@ -47,6 +47,17 @@ class PostsControllerTest < ActionController::TestCase
     end
   end
 
+  test 'user must login to upvote post' do
+    put :upvote, id: @post
+    assert_redirected_to new_user_session_path
+  end
+
+  test 'signed in user can upvote post' do
+    sign_in users(:one)
+    put :upvote, id: @post
+    assert_response :success
+  end
+
   test "should show post" do
     get :show, id: @post
     assert_response :success
