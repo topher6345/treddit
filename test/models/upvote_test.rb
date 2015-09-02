@@ -14,8 +14,10 @@ class UpvoteTest < ActiveSupport::TestCase
     end
   end
 
-  test 'upvote can access a post' do
-    upvote = Upvote.create!(user: users(:one), post: posts(:one))
-    assert_equal upvote.post, posts(:one)
+  test 'user cannot upvote the same post a second time' do
+    Upvote.create!(user: users(:one), post: posts(:one))
+    assert_raises(DuplicateUpvote) do
+      Upvote.create!(user: users(:one), post: posts(:one))
+    end
   end
 end

@@ -13,6 +13,7 @@ class Upvote
   end
 
   def create_vote
+    fail DuplicateUpvote if Vote.exists?(user: @user, post: @post)
     Vote.create! user: @user, post: @post
     self
   end
@@ -23,3 +24,5 @@ class Upvote
     self
   end
 end
+
+class DuplicateUpvote < StandardError; end
