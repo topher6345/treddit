@@ -7,6 +7,9 @@ class Upvote
     new(user: user, post: post).create_vote.increment_post_votes
   end
 
+  def self.destroy!(user:, post:)
+  end
+
   def initialize(user:, post:)
     @user = user
     @post = post
