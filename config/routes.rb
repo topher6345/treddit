@@ -5,6 +5,8 @@ Rails.application.routes.draw do
 
   post 'posts/:parent_post/comments', to: 'posts#create_comment', as: 'post_comment'
   put 'post/:id/upvote', to: 'posts#upvote', as: 'upvote_post'
+  delete 'post/:id/upvote', to: 'posts#destroy_upvote', as: 'destroy_upvote'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
