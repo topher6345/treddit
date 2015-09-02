@@ -26,9 +26,9 @@ aside {
   padding: 20px;
 
   section {
-    position: relative;
     background-color: white;
     border: 1px solid lightgrey;
+    position: relative;
   }
 
   article {
@@ -105,25 +105,29 @@ aside {
 }
 
 .post-vote-col {
-  position: absolute;
   height: 100%;
+  position: absolute;
 }
 
 .post-upvote-arrow {
+  left: .4rem;
   position: absolute;
   top: 0;
-  left: .4rem;
 }
 
-.post-upvote-arrow-disabled {
+.post-upvote-arrow-undo {
+  color: $primary-color;
+  left: .4rem;
   position: absolute;
   top: 0;
-  left: .4rem;
-  color: $primary-color;
+}
 
+.post-upvote-arrow-undo:hover {
+  cursor: pointer;
+  color: lightgrey;
 }
 
 .post-upvote-arrow:hover {
-  cursor: pointer;
   color: $primary-color;
+  cursor: pointer;
 }
