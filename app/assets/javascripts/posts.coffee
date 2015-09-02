@@ -1,13 +1,21 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+# Click handlers for interacting with posts
 
-console.log 'loaded'
 $(document).ready( ->
+
+  # Attach click handler to AJAX upvote a post
   $('.post-upvote-arrow').on 'click', ->
-    console.log $(this).data('id')
     $.ajax
       type: 'PUT'
+      url: "/post/#{$(this).data('id')}/upvote"
+      success: ->
+        Turbolinks.enableTransitionCache(true)
+        Turbolinks.visit(location.toString())
+        Turbolinks.enableTransitionCache(false)
+
+  # Attach click handler to AJAX remove an upvote on a post
+  $('.post-upvote-arrow-undo').on 'click', ->
+    $.ajax
+      type: 'DELETE'
       url: "/post/#{$(this).data('id')}/upvote"
       success: ->
         Turbolinks.enableTransitionCache(true)
