@@ -2,6 +2,7 @@
 # and create a vote linking a user and a post.
 
 class Upvote
+  attr_reader :post
   def self.create!(user:, post:)
     new(user: user, post: post).create_vote.increment_post_votes
   end

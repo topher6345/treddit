@@ -13,4 +13,9 @@ class UpvoteTest < ActiveSupport::TestCase
       Upvote.create!(user: users(:one), post: posts(:one))
     end
   end
+
+  test 'upvote can access a post' do
+    upvote = Upvote.create!(user: users(:one), post: posts(:one))
+    assert_equal upvote.post, posts(:one)
+  end
 end
