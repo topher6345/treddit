@@ -15,7 +15,7 @@ class PostsController < ApplicationController
   # GET /posts/1.json
   def show
     @parent = Post.find(params[:id])
-    @posts = @parent.descendants.arrange(order: :votes)
+    @posts = @parent.descendants.arrange(order: 'votes DESC')
   end
 
   # GET /posts/new
