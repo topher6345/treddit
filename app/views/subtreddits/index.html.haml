@@ -1,0 +1,23 @@
+%h1 Listing subtreddits
+
+%table
+  %thead
+    %tr
+      %th Name
+      %th Description
+      %th
+      %th
+      %th
+
+  %tbody
+    - @subtreddits.each do |subtreddit|
+      %tr
+        %td= subtreddit.name
+        %td= subtreddit.description
+        %td= link_to 'Show', subtreddit
+        %td= link_to 'Edit', edit_subtreddit_path(subtreddit)
+        %td= link_to 'Destroy', subtreddit, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Subtreddit', new_subtreddit_path
