@@ -19,11 +19,3 @@
 "use strict";
 
 $(function(){ $(document).foundation(); });
-
-$(document).ready(function(){
-  $('.reply-button').on('click', function() {
-    console.log($(this).data('id'));
-    $('#'+$(this).data('id')).toggleClass('hide')
-  });
-});
-
