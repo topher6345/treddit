@@ -83,4 +83,11 @@ class PostsControllerTest < ActionController::TestCase
 
     assert_redirected_to posts_path
   end
+
+
+  test 'should remove upvote that exists' do
+    sign_in users(:one)
+    delete :destroy_upvote, id: @post
+    assert_response :success
+  end
 end
