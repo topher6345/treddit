@@ -2,7 +2,7 @@
   .post-vote-col
     - if user_signed_in?
       - if Vote.exists?(user: current_user, post: post)
-        %i.fi-arrow-up(class="post-upvote-arrow-disabled")
+        %i.fi-arrow-up(class="post-upvote-arrow-undo" data-id="#{post.id}")
       - else
         %i.fi-arrow-up(class="post-upvote-arrow" data-id="#{post.id}")
   %header
