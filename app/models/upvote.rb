@@ -1,13 +1,21 @@
 # Creation class to update both the Post's cached vote count
 # and create a vote linking a user and a post.
-
+#
+# There are two class methods that serve as the public API
+#
+#   # User upvotes a post
+#   Upvote.create! user: user, post: post
+#
+#   # User removes an upvote from a post
+#   Upvote.destroy! user: user, post: post
+#
 class Upvote
-  attr_reader :post
   def self.create!(user:, post:)
     new(user: user, post: post).create_vote.increment_post_votes
   end
 
   def self.destroy!(user:, post:)
+    new(user: user, post: post).destroy_vote.decrement_post_votes
   end
 
   def initialize(user:, post:)
@@ -22,10 +30,21 @@ class Upvote
   end
 
   def increment_post_votes
-    @post.votes += 1
-    @post.save!
+    @post.increment(:votes)
+    self
+  end
+
+  def destroy_vote
+    fail UpvoteNotFound unless Vote.exists?(user: @user, post: @post)
+    Vote.find_by(user: @user, post: @post).destroy!
+    self
+  end
+
+  def decrement_post_votes
+    @post.decrement(:votes)
     self
   end
 end
 
 class DuplicateUpvote < StandardError; end
+class UpvoteNotFound < StandardError; end
