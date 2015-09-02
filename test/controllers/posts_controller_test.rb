@@ -87,6 +87,11 @@ class PostsControllerTest < ActionController::TestCase
 
   test 'should remove upvote that exists' do
     sign_in users(:one)
+
+    # Add upvote
+    put :upvote, id: @post
+    assert_response :success, 'Could not create upvote to test destroy upvote'
+
     delete :destroy_upvote, id: @post
     assert_response :success
   end
