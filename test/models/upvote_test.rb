@@ -25,7 +25,7 @@ class UpvoteTest < ActiveSupport::TestCase
     assert_difference('posts(:one).votes') do
       Upvote.create!(user: users(:one), post: posts(:one))
     end
-    assert_difference('posts(:one).votes') do
+    assert_difference('posts(:one).votes',  -1) do
       Upvote.destroy!(user: users(:one), post: posts(:one))
     end
   end
