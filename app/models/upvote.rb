@@ -1,17 +1,21 @@
-# Creation class to update both the Post's cached vote count
-# and create a vote linking a user and a post.
+# = Upvote
 #
-# There are two class methods that serve as the public API
+# Upvote is a creation class encapsulating
+# * create a vote linking a user and a post
+# * update both the Post's cached vote count
 #
-#   # User upvotes a post
+# There are two class methods that serve as the public API.
+#
+# == create!
+#
 #   Upvote.create! user: user, post: post
 #
-#   # User removes an upvote from a post
+# == destroy!
+#
 #   Upvote.destroy! user: user, post: post
 #
-class DuplicateUpvote < StandardError; end
-class UpvoteNotFound < StandardError; end
-
+# Either of these will throw an exception if the operation cannot be completed
+#
 class Upvote
   def self.create!(user:, post:)
     new(user: user, post: post).create_vote.increment_post_votes
@@ -51,4 +55,11 @@ class Upvote
   end
 end
 
+# == Upvote Exception classes
+#
+# Raised when someone tries to upvote twice
+# Enforced by database index in `votes table.
+class DuplicateUpvote < StandardError; end
 
+# Raise when one tries to undo an upvote that doesn't exist
+class UpvoteNotFound < StandardError; end
