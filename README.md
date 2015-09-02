@@ -5,11 +5,14 @@ A reddit clone in Ruby on Rails.
 
 ## Summary
 
-Treddit (for Tree-reddit or Topher-reddit) is an attempt at making a discussion forum style social network. The tree-like data storeis provided by the [ancestry](https://github.com/stefankroes/ancestry) gem.
+Treddit (for Tree-reddit or Topher-reddit) is an attempt at making a discussion
+forum style social network. The tree-like data store is provided by the
+[ancestry](https://github.com/stefankroes/ancestry) gem.
 
 ### Disclaimer
 
-I'm not trying to white label or rip off Reddit's intellectual property here, just having fun.
+I'm not trying sell a white label or rip off Reddit's intellectual property
+here, I'm just having fun.
 
 ## Features
 
