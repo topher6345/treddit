@@ -1,4 +1,10 @@
 %section
+  .post-vote-col
+    - if user_signed_in?
+      - if Vote.exists?(user: current_user, post: post)
+        %i.fi-arrow-up(class="post-upvote-arrow-disabled")
+      - else
+        %i.fi-arrow-up(class="post-upvote-arrow" data-id="#{post.id}")
   %header
     %span.post-show-user
       - if @parent.user == post.user
@@ -7,7 +13,7 @@
       - else
         #{post.email}
       %i.fi-graph-trend.post-points
-      %span.post-points=points(post.descendants.count)
+      %span.post-points=points(post.votes)
     %i.fi-clock
     %span #{time_ago_in_words(post.created_at)} ago
   %article
