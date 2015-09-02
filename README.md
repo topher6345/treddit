@@ -17,5 +17,6 @@ I'm not trying to white label or rip off Reddit's intellectual property here, ju
 - [x] Reddit-style comments in a tree like structure
 - [x] User associated comments and posts
 - [x] Can post links or text posts
-- [ ] Upvote/downvotes
-- [ ] Sorting comments by votes
+- [x] Upvotes
+- [x] Sorting comments by votes
+- [ ] Downvotes
