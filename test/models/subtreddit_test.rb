@@ -22,4 +22,16 @@ class SubtredditTest < ActiveSupport::TestCase
     subtreddit.destroy
     assert_empty Post.where(subtreddit: subtreddits(:one))
   end
+
+  test 'subtreddit has unique name' do
+    assert_raises(ActiveRecord::RecordInvalid) do
+      Subtreddit.create!(name: 'ruby', description: 'Try to create duplicate name.')
+    end
+    assert_raises(ActiveRecord::RecordInvalid) do
+      Subtreddit.create!(name: 'Ruby', description: 'Try to create duplicate name.')
+    end
+    assert_raises(ActiveRecord::RecordInvalid) do
+      Subtreddit.create!(name: 'RUBY', description: 'Try to create duplicate name.')
+    end
+  end
 end
