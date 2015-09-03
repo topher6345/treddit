@@ -24,6 +24,7 @@ group :development, :test do
   gem 'simplecov'
   gem 'annotate'
   gem 'quiet_assets'
+  gem 'faker'
 end
 
 gem 'letter_opener', group: :development
