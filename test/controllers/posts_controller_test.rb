@@ -21,13 +21,13 @@ class PostsControllerTest < ActionController::TestCase
   test "should create post" do
     sign_in users(:one)
     assert_difference('Post.count') do
-      post :create, post: { body: @post.body, title: @post.title }
+      post :create, post: { body: @post.body, title: @post.title, subtreddit_id: subtreddits(:one).id }
     end
 
     assert_redirected_to post_path(assigns(:post))
 
     assert_no_difference('Post.count') do
-      post :create, post: { body: nil, title: @post.title }
+      post :create, post: { body: nil, title: @post.title, subtreddit_id: subtreddits(:one).id  }
     end
 
   end
@@ -37,13 +37,13 @@ class PostsControllerTest < ActionController::TestCase
     parent_post = @post
 
     assert_difference('Post.count') do
-      post :create_comment, parent_post: parent_post.id, body: 'A comment'
+      post :create_comment, parent_post: parent_post.id, body: 'A comment', subtreddit_id: subtreddits(:one).id
     end
 
     assert_redirected_to post_path(parent_post)
 
     assert_no_difference('Post.count') do
-      post :create_comment, parent_post: parent_post.id, body: nil
+      post :create_comment, parent_post: parent_post.id, body: nil, subtreddit_id: subtreddits(:one).id
     end
   end
 
