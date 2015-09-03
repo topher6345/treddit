@@ -18,7 +18,7 @@
 require 'test_helper'
 
 class PostTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  test "post belongs to a subtreddit" do
+    assert_not_nil posts(:one).subtreddit
+  end
 end

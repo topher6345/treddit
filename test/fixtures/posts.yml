@@ -21,8 +21,10 @@ one:
   title: MyString
   body: MyText
   user: one
+  subtreddit: one
 
 two:
   title: MyString
   body: MyText
   user: two
+  subtreddit: one
