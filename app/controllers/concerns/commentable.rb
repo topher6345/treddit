@@ -3,8 +3,7 @@ module Commentable
 
   def create_comment
     @parent = Post.find(comment_params[:parent_post])
-    @post = @parent.children
-                   .create(body: comment_params[:body], user_id: current_user.id, subtreddit_id: @parent.subtreddit_id)
+    @post = @parent.children.create(children_params)
 
     respond_to do |format|
       if @post.save
@@ -21,5 +20,11 @@ module Commentable
 
   def comment_params
     params.permit(:body, :parent_post)
+  end
+
+  def children_params
+    { body: comment_params[:body],
+      user_id: current_user.id,
+      subtreddit_id: @parent.subtreddit_id}
   end
 end
