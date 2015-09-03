@@ -25,7 +25,8 @@ class SubtredditsControllerTest < ActionController::TestCase
   end
 
   test "should show subtreddit" do
-    get :show, id: @subtreddit
+    get :show, name: @subtreddit.name
+    assert_equal @subtreddit.posts.where(ancestry_depth: 0), assigns(:posts)
     assert_response :success
   end
 
