@@ -1,5 +1,6 @@
 %p#notice= notice
 
+= link_to 'Back', subtreddits_path
 %p
   %b Name:
   = @subtreddit.name
@@ -14,6 +15,3 @@
     .small-11.columns
       = render 'posts/index/post_row', post: post
 
-= link_to 'Edit', edit_subtreddit_path(@subtreddit)
-\|
-= link_to 'Back', subtreddits_path
