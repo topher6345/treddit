@@ -12,6 +12,6 @@
       %tr
         %td= subtreddit.name
         %td= subtreddit.description
-        %td= link_to 'Show', subtreddit
+        %td= link_to 'Show', pretty_subtreddit_path(subtreddit.name)
 
 / = link_to 'New Subtreddit', new_subtreddit_path
