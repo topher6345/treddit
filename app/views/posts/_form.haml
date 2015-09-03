@@ -8,6 +8,9 @@
         - @post.errors.full_messages.each do |message|
           %li= message
   .field
+    = f.label :subtreddit
+    = f.select(:subtreddit_id, Subtreddit.all.pluck(:name, :id))
+  .field
     = f.label :title
     = f.text_field :title, placeholder: '(required)'
   .field
