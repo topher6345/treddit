@@ -1,5 +1,6 @@
 class SubtredditsController < ApplicationController
   before_action :set_subtreddit, only: [:show, :edit, :update, :destroy]
+  before_action :set_posts, only: [:show]
 
   # GET /subtreddits
   # GET /subtreddits.json
@@ -64,11 +65,15 @@ class SubtredditsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_subtreddit
-      @subtreddit = Subtreddit.find(params[:id])
+      @subtreddit = Subtreddit.find_by(name: params[:name])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def subtreddit_params
       params.require(:subtreddit).permit(:name, :description)
+    end
+
+    def set_posts
+      @posts = @subtreddit.posts.where(ancestry_depth: 0)
     end
 end
