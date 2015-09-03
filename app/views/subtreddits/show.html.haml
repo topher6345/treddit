@@ -7,6 +7,13 @@
   %b Description:
   = @subtreddit.description
 
+- @posts.each.with_index(1) do |post, index|
+  .row.post-row
+    .small-1.columns
+      = index
+    .small-11.columns
+      = render 'posts/index/post_row', post: post
+
 = link_to 'Edit', edit_subtreddit_path(@subtreddit)
 \|
 = link_to 'Back', subtreddits_path
