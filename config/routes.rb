@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :subtreddits
+  resources :subtreddits,  only: [:index, :show, :create]
   devise_for :users
   resources :posts, except: [:update, :edit, :destroy]
   root 'posts#index'
