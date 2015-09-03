@@ -11,4 +11,5 @@
 
 class Subtreddit < ActiveRecord::Base
   has_many :posts, dependent: :destroy
+  validates_uniqueness_of :name, case_sensitive: false
 end
