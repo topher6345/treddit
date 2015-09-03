@@ -4,7 +4,7 @@ module Commentable
   def create_comment
     @parent = Post.find(comment_params[:parent_post])
     @post = @parent.children
-                   .create(body: comment_params[:body], user_id: current_user.id)
+                   .create(body: comment_params[:body], user_id: current_user.id, subtreddit_id: @parent.subtreddit_id)
 
     respond_to do |format|
       if @post.save
