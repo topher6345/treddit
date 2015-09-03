@@ -12,7 +12,7 @@
 require 'test_helper'
 
 class SubtredditTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  test 'subtreddit has many posts' do
+    assert_not_empty subtreddits(:one).posts
+  end
 end
