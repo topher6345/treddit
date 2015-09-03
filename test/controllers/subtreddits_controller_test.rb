@@ -18,7 +18,7 @@ class SubtredditsControllerTest < ActionController::TestCase
 
   test "should create subtreddit" do
     assert_difference('Subtreddit.count') do
-      post :create, subtreddit: { description: @subtreddit.description, name: @subtreddit.name }
+      post :create, subtreddit: { description: 'My favorite instrument.', name: 'Guitar' }
     end
 
     assert_redirected_to subtreddit_path(assigns(:subtreddit))
