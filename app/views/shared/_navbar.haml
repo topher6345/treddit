@@ -1,29 +1,30 @@
-%nav.top-bar{"data-topbar" => "", :role => "navigation"}
-  %ul.title-area
-    %li.name
-      %h1
-        = link_to root_path do
-          %i.fi-social-reddit
-          Treddit
-  %section.top-bar-section
-    -if user_signed_in?
-      %ul.right
+.sticky
+  %nav.top-bar{"data-topbar" => "", :role => "navigation"}
+    %ul.title-area
+      %li.name
+        %h1
+          = link_to root_path do
+            %i.fi-social-reddit
+            Treddit
+    %section.top-bar-section
+      -if user_signed_in?
+        %ul.right
+          %li
+            = link_to new_post_path, class: 'button secondary' do
+              %i.fi-pencil
+              New Post
+          %li
+            %a Logged in as #{current_user.email}
+          %li
+            = link_to('Logout', destroy_user_session_path, :method => :delete)
+      - else
+        %ul.right
+          %li
+            = link_to('Login', new_user_session_path)
+          %li
+            = link_to('Register', new_user_registration_path)
+      %ul.left
         %li
-          = link_to new_post_path, class: 'button secondary' do
-            %i.fi-pencil
-            New Post
+          = link_to 'A clone of the front page of the internet', root_path
         %li
-          %a Logged in as #{current_user.email}
-        %li
-          = link_to('Logout', destroy_user_session_path, :method => :delete)
-    - else
-      %ul.right
-        %li
-          = link_to('Login', new_user_session_path)
-        %li
-          = link_to('Register', new_user_registration_path)
-    %ul.left
-      %li
-        = link_to 'A clone of the front page of the internet', root_path
-      %li
-        = link_to 'Subtreddits', subtreddits_path
+          = link_to 'Subtreddits', subtreddits_path
