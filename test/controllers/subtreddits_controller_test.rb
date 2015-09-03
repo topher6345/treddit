@@ -12,6 +12,7 @@ class SubtredditsControllerTest < ActionController::TestCase
   end
 
   test "should get new" do
+    skip
     get :new
     assert_response :success
   end
@@ -31,16 +32,19 @@ class SubtredditsControllerTest < ActionController::TestCase
   end
 
   test "should get edit" do
+    skip
     get :edit, id: @subtreddit
     assert_response :success
   end
 
   test "should update subtreddit" do
+    skip
     patch :update, id: @subtreddit, subtreddit: { description: @subtreddit.description, name: @subtreddit.name }
     assert_redirected_to subtreddit_path(assigns(:subtreddit))
   end
 
   test "should destroy subtreddit" do
+    skip
     assert_difference('Subtreddit.count', -1) do
       delete :destroy, id: @subtreddit
     end
