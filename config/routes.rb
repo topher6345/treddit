@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   put 'post/:id/upvote', to: 'posts#upvote', as: 'upvote_post'
   delete 'post/:id/upvote', to: 'posts#destroy_upvote', as: 'destroy_upvote'
 
+  get 'tr/:name', to: 'subtreddits#show', as: 'pretty_subtreddit'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
