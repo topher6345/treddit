@@ -6,6 +6,8 @@
     submitted #{time_ago_in_words(post.created_at)} ago by
     %span.post-user
       = post.email
+    to
+    = link_to "tr/#{post.subtreddit.name}", pretty_subtreddit_path(post.subtreddit.name)
   %nav= link_to comments(post.subtree.count), post
 - else
   %header
