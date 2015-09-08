@@ -11,7 +11,7 @@ forum style social network. The tree-like data store is provided by the
 
 ### Disclaimer
 
-I'm not trying sell a white label or rip off Reddit's intellectual property
+I'm not trying to sell a white label or rip off Reddit's intellectual property
 here, I'm just having fun.
 
 ## Features
