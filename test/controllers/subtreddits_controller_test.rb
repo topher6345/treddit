@@ -11,8 +11,13 @@ class SubtredditsControllerTest < ActionController::TestCase
     assert_not_nil assigns(:subtreddits)
   end
 
+  test "should not get new unless logged in" do
+    get :new
+    assert_redirected_to new_user_session_path
+  end
+
   test "should get new" do
-    skip
+    sign_in users(:one)
     get :new
     assert_response :success
   end
