@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   # Routes for Subtreddits
-  resources :subtreddits,  only: [:index, :show, :create]
+  resources :subtreddits,  only: [:index, :show, :new, :create]
 
   # Routes for Devise Users - login/signup etc.
   devise_for :users
