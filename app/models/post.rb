@@ -14,7 +14,7 @@
 #  votes          :integer          default(0)
 #  subtreddit_id  :integer          not null
 #
-#
+
 # = Post
 #
 # A post is the foundational record of Treddit.
@@ -25,7 +25,6 @@
 #
 # Posts can be roots (OP or original posts.)
 # or can be comments (Posts whos parent node is another Post.)
-
 class Post < ActiveRecord::Base
 
   # Caches how many descendants (comments) a Post may have
