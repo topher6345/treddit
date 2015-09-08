@@ -10,8 +10,15 @@
 # Other actions will be provided in the future to created and update Subtreddits.
 
 class SubtredditsController < ApplicationController
-  before_action :set_subtreddit, only: [:show, :edit, :update, :destroy]
+
+  # Sets @subtreddit instance variable found by subtreddit name
+  before_action :set_subtreddit, only: [:show, :edit]
+
+  # Sets @post instance variable found by subtreddit
   before_action :set_posts, only: [:show]
+
+  # Requires a user to be logged in to manipulate Subtreddit record.
+  before_action :authenticate_user!, only: [:new, :create]
 
   # Displays a list of all Subtreddits in Treddit.
   def index
