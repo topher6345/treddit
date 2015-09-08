@@ -98,6 +98,6 @@ class SubtredditsController < ApplicationController
 
     # Finds all Posts for a Subtreddit.
     def set_posts
-      @posts = @subtreddit.posts.where(ancestry_depth: 0)
+      @posts = @subtreddit.posts.where(ancestry_depth: 0).includes(:user)
     end
 end
