@@ -4,6 +4,7 @@
 #
 # A comment is another instance of a Post that is not a root.
 # In other words, a comment is a child Post of another Post.
+
 module Commentable
   extend ActiveSupport::Concern
 
