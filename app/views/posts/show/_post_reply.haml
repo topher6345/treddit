@@ -17,7 +17,7 @@
     %i.fi-clock
     %span #{time_ago_in_words(post.created_at)} ago
   %article
-    = post.body
+    = markdown post.body
   - if user_signed_in?
     %nav
       %i.fi-comment
