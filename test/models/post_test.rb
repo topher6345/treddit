@@ -26,6 +26,10 @@ class PostTest < ActiveSupport::TestCase
     assert_not_nil posts(:one).user
   end
 
+  test 'post has delegate method #email' do
+    assert_equal posts(:one).user.email, posts(:one).email
+  end
+
   test 'post must have a body' do
     assert_raises(ActiveRecord::RecordInvalid) do
       Post.create! title: 'hey', body: nil, subtreddit: subtreddits(:one)
