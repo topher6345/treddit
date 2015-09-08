@@ -1,11 +1,13 @@
 class Comment
   def self.create!(parent:, body:, user:)
-    new(
-      parent: parent,
-      body: body,
-      user: user
-    ).create_post
-     .update_parent_cache
+    ActiveRecord::Base.transaction do
+      new(
+        parent: parent,
+        body: body,
+        user: user
+      ).create_post
+       .update_parent_cache
+    end
   end
 
   def initialize(parent:, body:, user:)
@@ -20,7 +22,7 @@ class Comment
   end
 
   def update_parent_cache
-    @parent.increment(:comments_count)
+    @parent.increment(:descendants_depth)
     @parent.save!
     self
   end
