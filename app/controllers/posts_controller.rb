@@ -18,13 +18,13 @@ class PostsController < ApplicationController
   # Displays all the root level Posts.
   # Serves as the 'Front Page' endpoint.
   def index
-    @posts = Post.where(ancestry_depth: 0)
+    @posts = Post.where(ancestry_depth: 0).includes(:user, :subtreddit)
   end
 
   # Displays a Post and its descendants
   def show
     @parent = Post.find(params[:id])
-    @posts = @parent.descendants.arrange(order: 'votes DESC')
+    @posts = @parent.descendants.includes(:user).arrange(order: 'votes DESC')
   end
 
   # Displays a form for creating a new Post.
