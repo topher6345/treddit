@@ -1,6 +1,13 @@
+# = Commentable
+#
+# This module adds an action to create a comment for a post.
+#
+# A comment is another instance of a Post that is not a root.
+# In other words, a comment is a child Post of another Post.
 module Commentable
   extend ActiveSupport::Concern
 
+  # Endpoint to create a comment or 'child Post' of an existing parent post.
   def create_comment
     @parent = Post.find(comment_params[:parent_post])
     @post = @parent.children.create(children_params)
@@ -18,10 +25,12 @@ module Commentable
 
   private
 
+  # Defines whitelisted parameters accepted by this action.
   def comment_params
     params.permit(:body, :parent_post)
   end
 
+  # Defines whitelisted parameters needed to create a comment or child Post.
   def children_params
     { body: comment_params[:body],
       user_id: current_user.id,
