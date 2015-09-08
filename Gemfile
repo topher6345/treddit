@@ -16,6 +16,7 @@ gem 'devise'
 gem 'jquery-turbolinks'
 gem 'foundation-icons-sass-rails'
 gem 'rails_12factor', group: :production
+gem 'redcarpet'
 
 group :development, :test do
   gem 'byebug'
