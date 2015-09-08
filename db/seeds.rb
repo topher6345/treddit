@@ -36,13 +36,13 @@ end
 posts = []
 20.times do
   posts << Post.create!(title: Faker::Company.catch_phrase,
-                        body: Faker::Lorem.paragraph,
+                        body: Faker::Hacker.say_something_smart,
                         user: users.sample,
                         subtreddit: subtreddits.sample)
 end
 
 80.times do
-  posts << Comment.create!(body: Faker::Lorem.paragraph,
+  posts << Comment.create!(body: Faker::Hacker.say_something_smart,
                            user: users.sample,
                            parent: posts.sample)
 end
