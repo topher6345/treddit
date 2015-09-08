@@ -17,7 +17,17 @@ class SubtredditsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should create subtreddit" do
+  test 'should not create subtreddit if not logged in' do
+    assert_no_difference('Subtreddit.count') do
+      post :create, subtreddit: { description: 'My favorite instrument.', name: 'Guitar' }
+    end
+
+    assert_redirected_to new_user_session_path
+  end
+
+  test "should create subtreddit if logged in" do
+    sign_in users(:one)
+
     assert_difference('Subtreddit.count') do
       post :create, subtreddit: { description: 'My favorite instrument.', name: 'Guitar' }
     end
