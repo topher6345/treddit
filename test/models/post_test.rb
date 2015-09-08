@@ -18,7 +18,13 @@
 require 'test_helper'
 
 class PostTest < ActiveSupport::TestCase
-  test "post belongs to a subtreddit" do
+  test 'post belongs to a subtreddit' do
     assert_not_nil posts(:one).subtreddit
+  end
+
+  test 'post must have a body' do
+    assert_raises(ActiveRecord::RecordInvalid) do
+      Post.create! title: 'hey', body: nil, subtreddit: subtreddits(:one)
+    end
   end
 end
