@@ -42,9 +42,9 @@ posts = []
 end
 
 80.times do
-  posts << posts.sample.children.create!(body: Faker::Lorem.paragraph,
-                                  user: users.sample,
-                                  subtreddit: subtreddits.sample)
+  posts << Comment.create!(body: Faker::Lorem.paragraph,
+                           user: users.sample,
+                           parent: posts.sample)
 end
 
 while(Vote.count < 40)
