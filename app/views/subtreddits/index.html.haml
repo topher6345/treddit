@@ -1,17 +1,18 @@
 %h1 Listing subtreddits
 
+= link_to new_subtreddit_path, class: 'button secondary' do
+  %i.fi-plus
+  New Subtreddit
 %table
   %thead
     %tr
       %th Name
       %th Description
-      %th
 
   %tbody
     - @subtreddits.each do |subtreddit|
       %tr
-        %td= subtreddit.name
+        %td
+          = link_to "tr/#{subtreddit.name}", pretty_subtreddit_path(subtreddit.name)
         %td= subtreddit.description
-        %td= link_to 'Show', pretty_subtreddit_path(subtreddit.name)
 
-/ = link_to 'New Subtreddit', new_subtreddit_path
