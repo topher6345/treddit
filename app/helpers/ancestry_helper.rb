@@ -1,4 +1,7 @@
-# app/helpers/ancestry_helper.rb
+# = AncestryHelper
+#
+#   https://github.com/stefankroes/ancestry/wiki/Create-a-nested-HTML-list-from-the-ancestry-arranged()-method.
+#
 module AncestryHelper
   # arranged as tree expects 3 arguments. The hash from has_ancestry.arrange() method,
   # options, and a render block
@@ -46,8 +49,10 @@ module AncestryHelper
         end
 
         if children.size > 0
+          #  http://api.rubyonrails.org/classes/ActionView/Helpers/CaptureHelper.html
           output << content_tag(:li, capture(object, &block) + arranged_tree_as_list(children, options, &block).html_safe,  :class => li_classes)
         else
+          #  http://api.rubyonrails.org/classes/ActionView/Helpers/CaptureHelper.html
           output << content_tag(:li, capture(object, &block), :class => li_classes).html_safe
           current_depth = object.ancestry_depth
         end
