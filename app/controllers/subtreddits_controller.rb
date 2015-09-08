@@ -1,29 +1,42 @@
+# = SubtredditsController
+#
+# This class defines actions to interact with the Subtreddit record.
+#
+# A Subtreddit is like a Reddit Subtreddit.
+#
+# The SubtredditsController#show action is unique in that it displays
+# a list of Posts to the end-user.
+#
+# Other actions will be provided in the future to created and update Subtreddits.
+
 class SubtredditsController < ApplicationController
   before_action :set_subtreddit, only: [:show, :edit, :update, :destroy]
   before_action :set_posts, only: [:show]
 
-  # GET /subtreddits
-  # GET /subtreddits.json
+  # Displays a list of all Subtreddits in Treddit.
   def index
     @subtreddits = Subtreddit.all
   end
 
-  # GET /subtreddits/1
-  # GET /subtreddits/1.json
+  # Displays the top Posts of a particular subtreddit accessed by name
+  #
+  #    http://treddit.com/tr/:name
+  #
   def show
   end
 
-  # GET /subtreddits/new
+  # Displays a form to create a new Subtreddit.
   def new
     @subtreddit = Subtreddit.new
   end
 
-  # GET /subtreddits/1/edit
+  # TODO : add route and views for Subtreddit edit.
+  # No route exists for this action yet.
+  # Theres no user-edits-a-subtreddit feature yet.
   def edit
   end
 
-  # POST /subtreddits
-  # POST /subtreddits.json
+  # Defines an endpoint to create a new Subtreddit.
   def create
     @subtreddit = Subtreddit.new(subtreddit_params)
 
@@ -38,8 +51,9 @@ class SubtredditsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /subtreddits/1
-  # PATCH/PUT /subtreddits/1.json
+  # TODO : add route for Subtreddit update.
+  # No route exists for this action yet.
+  # Theres no user-edits-a-subtreddit feature yet.
   def update
     respond_to do |format|
       if @subtreddit.update(subtreddit_params)
@@ -52,8 +66,9 @@ class SubtredditsController < ApplicationController
     end
   end
 
-  # DELETE /subtreddits/1
-  # DELETE /subtreddits/1.json
+  # TODO : add route for Subtreddit destroy.
+  # No route exists for this action yet.
+  # Theres no user-deletes-a-subtreddit feature yet.
   def destroy
     @subtreddit.destroy
     respond_to do |format|
@@ -63,16 +78,18 @@ class SubtredditsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+
+    # Finds a Subtreddit by name in URL. Ex: `tr/:name`
     def set_subtreddit
       @subtreddit = Subtreddit.find_by(name: params[:name])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
+    # Defines whitelisted parameters used to create a new Subtreddit.
     def subtreddit_params
       params.require(:subtreddit).permit(:name, :description)
     end
 
+    # Finds all Posts for a Subtreddit.
     def set_posts
       @posts = @subtreddit.posts.where(ancestry_depth: 0)
     end
