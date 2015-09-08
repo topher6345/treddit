@@ -22,6 +22,10 @@ class PostTest < ActiveSupport::TestCase
     assert_not_nil posts(:one).subtreddit
   end
 
+  test 'post belongs to user' do
+    assert_not_nil posts(:one).user
+  end
+
   test 'post must have a body' do
     assert_raises(ActiveRecord::RecordInvalid) do
       Post.create! title: 'hey', body: nil, subtreddit: subtreddits(:one)
