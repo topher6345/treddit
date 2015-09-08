@@ -1,12 +1,8 @@
-%p#notice= notice
-
-= link_to 'Back', subtreddits_path
-%p
-  %b Name:
-  = @subtreddit.name
-%p
-  %b Description:
-  = @subtreddit.description
+%dl.sub-nav
+  %dt
+    = @subtreddit.name
+  %dt
+    = @subtreddit.description
 
 - @posts.each.with_index(1) do |post, index|
   .row.post-row
