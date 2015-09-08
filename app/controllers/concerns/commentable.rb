@@ -11,7 +11,7 @@ module Commentable
   # Endpoint to create a comment or 'child Post' of an existing parent post.
   def create_comment
     @parent = Post.find(comment_params[:parent_post])
-    @post = @parent.children.create(children_params)
+    @post = Comment.create! parent: @parent, body: comment_params[:body], user: current_user
 
     respond_to do |format|
       if @post.save
@@ -22,6 +22,9 @@ module Commentable
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end
+
+  rescue ActiveRecord::RecordInvalid => e
+    render :new, notice: @post.errors
   end
 
   private
