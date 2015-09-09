@@ -7,7 +7,7 @@
         %i.fi-arrow-up(class="post-upvote-arrow" data-id="#{post.id}")
   %header
     %span.post-show-user
-      - if @parent.user == post.user
+      - if @post.user == post.user
         %span.post-root-user
           #{post.email}
       - else

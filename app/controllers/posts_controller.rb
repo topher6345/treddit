@@ -10,7 +10,10 @@ class PostsController < ApplicationController
   include Upvoteable
 
   # Sets an instance variable to interact with an existing Post record.
-  before_action :set_post, only: [:edit, :update, :destroy]
+  before_action :set_post, only: [:show, :update]
+
+  # Sets an instance variable containing all the comments for a parent Post.
+  before_action :set_comments, only: [:show]
 
   # Redirects to login page if no User session exists.
   before_action :authenticate_user!, only: [:new, :create, :create_comment, :upvote, :update]
@@ -26,8 +29,6 @@ class PostsController < ApplicationController
 
   # Displays a Post and its descendants
   def show
-    @parent = Post.find(params[:id])
-    @posts = @parent.comments
   end
 
   # Displays a form for creating a new Post.
@@ -83,16 +84,22 @@ class PostsController < ApplicationController
       @post = Post.find(params[:id])
     end
 
-    # Whitelist of parameters that can be submitted to create a Post.
+    def set_comments
+       @comments = @post.comments
+    end
+
+    # Whitelists parameters that can be submitted to create a Post.
     def post_params
       params.require(:post).permit(:title, :body, :link, :subtreddit_id)
     end
 
+    # Updates a Post if user is authorized to do so
     def update_post
       return false unless current_user.posts.include? @post
       @post.update(post_params.merge edited: true)
     end
 
+    # Assigns instance variable of all posts on which a user has voted.
     def set_user_votes
       @user_votes = current_user.votes.pluck(:post_id) if user_signed_in?
     end
