@@ -13,7 +13,7 @@ class PostsController < ApplicationController
   before_action :set_post, only: [ :edit, :update, :destroy]
 
   # Redirects to login page if no User session exists.
-  before_action :authenticate_user!, only: [:new, :create, :create_comment, :upvote]
+  before_action :authenticate_user!, only: [:new, :create, :create_comment, :upvote, :update]
 
   # Displays all the root level Posts.
   # Serves as the 'Front Page' endpoint.
@@ -54,12 +54,10 @@ class PostsController < ApplicationController
   end
 
 
-  # TODO : Add endpoint for Post update.
-  # No route exists for this action yet.
-  # Theres no user-edits-a-post feature yet.
+  # Updates a post and marks the record as edited.
   def update
     respond_to do |format|
-      if @post.update(post_params)
+      if @post.update(post_params.merge edited: true)
         format.html { redirect_to @post, notice: 'Post was successfully updated.' }
         format.json { render :show, status: :ok, location: @post }
       else
