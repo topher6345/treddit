@@ -24,7 +24,7 @@ class UpvoteTest < ActiveSupport::TestCase
   test 'upvote destroys a vote' do
     Upvote.create!(user: users(:one), post: posts(:one))
     assert_difference('Vote.count', -1) do
-      Upvote.destroy!(user: users(:one), post: posts(:one))
+      Upvote.destroy_all!(user: users(:one), post: posts(:one))
     end
   end
 
@@ -34,13 +34,13 @@ class UpvoteTest < ActiveSupport::TestCase
       Upvote.create!(user: users(:one), post: posts(:one))
     end
     assert_difference('posts(:one).votes',  -1) do
-      Upvote.destroy!(user: users(:one), post: posts(:one))
+      Upvote.destroy_all!(user: users(:one), post: posts(:one))
     end
   end
 
   test 'attempting to remove a nonexistent upvote throws exception' do
     assert_raises(UpvoteNotFound) do
-      Upvote.destroy!(user: users(:one), post: posts(:one))
+      Upvote.destroy_all!(user: users(:one), post: posts(:one))
     end
   end
 end
