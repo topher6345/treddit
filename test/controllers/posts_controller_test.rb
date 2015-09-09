@@ -37,13 +37,13 @@ class PostsControllerTest < ActionController::TestCase
     parent_post = @post
 
     assert_difference('Post.count') do
-      post :create_comment, parent_post: parent_post.id, body: 'A comment', subtreddit_id: subtreddits(:one).id
+      post :create_comment, id: parent_post.id, body: 'A comment', subtreddit_id: subtreddits(:one).id
     end
 
     assert_redirected_to post_path(parent_post)
 
     assert_no_difference('Post.count') do
-      post :create_comment, parent_post: parent_post.id, body: nil, subtreddit_id: subtreddits(:one).id
+      post :create_comment, id: parent_post.id, body: nil, subtreddit_id: subtreddits(:one).id
     end
   end
 

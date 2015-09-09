@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   root 'posts#index'
 
   # Route to create a child Post (or comment) of a Post
-  post 'posts/:parent_post/comments', to: 'posts#create_comment', as: 'post_comment'
+  post 'comments/:id', to: 'posts#create_comment', as: 'post_comment'
 
   # Endpoint to add an upvote to a post
   put 'post/:id/upvote', to: 'posts#upvote', as: 'upvote_post'

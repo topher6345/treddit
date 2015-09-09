@@ -10,34 +10,32 @@ module Commentable
 
   # Endpoint to create a comment or 'child Post' of an existing parent post.
   def create_comment
-    @parent = Post.find(comment_params[:parent_post])
-    @post = Comment.create! parent: @parent, body: comment_params[:body], user: current_user
+    @post = Post.find(params[:id])
+    @comment = Comment.create! create_comment_params
 
     respond_to do |format|
-      if @post.save
-        format.html { redirect_to @parent.root, notice: 'Post was successfully created.' }
-        format.json { render :show, status: :created, location: @parent }
+      if @comment.save
+        format.html { redirect_to @post.root, notice: 'Post was successfully created.' }
+        format.json { render :show, status: :created, location: @post }
       else
         format.html { render :new }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
+        format.json { render json: @comment.errors, status: :unprocessable_entity }
       end
     end
 
   rescue ActiveRecord::RecordInvalid => e
-    render :new, notice: @post.errors
+    render :new, notice: @comment.errors
   end
 
   private
 
   # Defines whitelisted parameters accepted by this action.
   def comment_params
-    params.permit(:body, :parent_post)
+    params.permit(:body)
   end
 
   # Defines whitelisted parameters needed to create a comment or child Post.
-  def children_params
-    { body: comment_params[:body],
-      user_id: current_user.id,
-      subtreddit_id: @parent.subtreddit_id}
+  def create_comment_params
+    { parent: @post, body: comment_params[:body], user: current_user }
   end
 end
