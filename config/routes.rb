@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   # Routes for Posts
-  resources :posts, except: [:update, :edit, :destroy]
+  resources :posts, except: [:edit, :destroy]
 
   # Makes root path 'front page' or Posts#index
   root 'posts#index'
