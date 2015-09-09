@@ -70,9 +70,15 @@ class PostsControllerTest < ActionController::TestCase
   end
 
   test "should update post" do
-    skip
+    sign_in users(:one)
     patch :update, id: @post, post: { body: @post.body, title: @post.title }
+    assert Post.find(@post.id).edited, 'Post should be edited after updating.'
     assert_redirected_to post_path(assigns(:post))
+  end
+
+  test "user should login to update post" do
+    patch :update, id: @post, post: { body: @post.body, title: @post.title }
+    assert_redirected_to new_user_session_path
   end
 
   test "should destroy post" do
