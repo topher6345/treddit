@@ -23,7 +23,7 @@ module Commentable
       end
     end
 
-  rescue ActiveRecord::RecordInvalid => e
+  rescue ActiveModel::StrictValidationFailed => e
     render :new, notice: @comment.errors
   end
 
