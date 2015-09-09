@@ -61,8 +61,8 @@ class PostsController < ApplicationController
         format.html { redirect_to @post, notice: 'Post was successfully updated.' }
         format.json { render :show, status: :ok, location: @post }
       else
-        format.html { render :edit }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
+        format.html { render :edit, status: :unauthorized }
+        format.json { render json: @post.errors, status: :unauthorized }
       end
     end
   end
@@ -87,5 +87,10 @@ class PostsController < ApplicationController
     # Whitelist of parameters that can be submitted to create a Post.
     def post_params
       params.require(:post).permit(:title, :body, :link, :subtreddit_id)
+    end
+
+    def update_post
+      return false unless current_user.posts.include? @post
+      @post.update(post_params.merge edited: true)
     end
 end
