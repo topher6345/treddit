@@ -33,7 +33,7 @@ aside {
 
   article {
     padding: 20px 20px 20px 40px;
-    
+
     // For markdown lists
     ol li {
       list-style: decimal outside none;
@@ -46,6 +46,10 @@ aside {
   header {
     font-size: 1em;
     padding-left: 20px;
+
+    .post-timestamps {
+      color: grey;
+    }
   }
 
   .post-points {
