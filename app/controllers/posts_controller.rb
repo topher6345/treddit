@@ -56,14 +56,10 @@ class PostsController < ApplicationController
 
   # Updates a post and marks the record as edited.
   def update
-    respond_to do |format|
-      if @post.update(post_params.merge edited: true)
-        format.html { redirect_to @post, notice: 'Post was successfully updated.' }
-        format.json { render :show, status: :ok, location: @post }
-      else
-        format.html { render :edit, status: :unauthorized }
-        format.json { render json: @post.errors, status: :unauthorized }
-      end
+    if update_post
+      render json: { status: :ok }
+    else
+      render json: { errors: @post.errors }, status: :unauthorized
     end
   end
 
