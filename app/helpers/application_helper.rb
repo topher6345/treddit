@@ -1,5 +1,5 @@
 require 'redcarpet'
-require 'md_emoji'
+
 module ApplicationHelper
 
   # Taken from:
@@ -50,6 +50,6 @@ module ApplicationHelper
       # will require a space after # in defining headers
       # space_after_headers: true
     }
-    Redcarpet::Markdown.new(MdEmoji::Render.new(render_options), extensions).render(text).html_safe
+    Redcarpet::Markdown.new(renderer, extensions).render(text).html_safe
   end
 end
