@@ -81,6 +81,13 @@ class PostsControllerTest < ActionController::TestCase
     assert_redirected_to new_user_session_path
   end
 
+  test "should update post only if it belongs to them" do
+    sign_in users(:one)
+    @post = posts(:two)
+    patch :update, id: @post, post: { body: @post.body, title: @post.title }
+    assert_response :unauthorized
+  end
+
   test "should destroy post" do
     skip
     assert_difference('Post.count', -1) do
