@@ -10,10 +10,13 @@ class PostsController < ApplicationController
   include Upvoteable
 
   # Sets an instance variable to interact with an existing Post record.
-  before_action :set_post, only: [ :edit, :update, :destroy]
+  before_action :set_post, only: [:edit, :update, :destroy]
 
   # Redirects to login page if no User session exists.
   before_action :authenticate_user!, only: [:new, :create, :create_comment, :upvote, :update]
+
+  # Sets an instance variable with a list of post_ids the current user has upvoted
+  before_action :set_user_votes, only: [:show]
 
   # Displays all the root level Posts.
   # Serves as the 'Front Page' endpoint.
@@ -88,5 +91,9 @@ class PostsController < ApplicationController
     def update_post
       return false unless current_user.posts.include? @post
       @post.update(post_params.merge edited: true)
+    end
+
+    def set_user_votes
+      @user_votes = current_user.votes.pluck(:post_id) if user_signed_in?
     end
 end
