@@ -1,3 +1,4 @@
+- user_owns_post = @parent.user == post.user
 %section
   .post-vote-col
     - if user_signed_in?
@@ -7,7 +8,7 @@
         %i.fi-arrow-up(class="post-upvote-arrow" data-id="#{post.id}")
   %header
     %span.post-show-user
-      - if @parent.user == post.user
+      - if user_owns_post
         %span.post-root-user
           #{post.email}
       - else
@@ -21,8 +22,12 @@
   - if user_signed_in?
     %nav
       %i.fi-comment
-      %a(class="reply-button"data-id="form#{post.hash}")
+      %a(class="reply-button" data-id="form#{post.hash}")
         reply
+      -if user_owns_post
+        %i.fi-pencil
+        %a(class="edit-button" data-id="update#{post.hash}")
+          edit
   .div
     - if user_signed_in?
       = form_tag(post_comment_path(parent_post: post), method: 'post', id: "form#{post.hash}", class: 'hide') do
