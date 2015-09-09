@@ -15,7 +15,7 @@ module Upvoteable
   # Defines an endpoint to undo an existing upvote to an existing Post.
   def destroy_upvote
     post = Post.find(params[:id])
-    Upvote.destroy! user: current_user, post: post
+    Upvote.destroy_all! user: current_user, post: post
     render json: {status: :ok }, status: :ok
   end
 end
