@@ -27,7 +27,7 @@ class PostsController < ApplicationController
   # Displays a Post and its descendants
   def show
     @parent = Post.find(params[:id])
-    @posts = @parent.descendants.includes(:user).arrange(order: 'votes DESC')
+    @posts = @parent.comments
   end
 
   # Displays a form for creating a new Post.
