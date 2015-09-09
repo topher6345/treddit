@@ -2,17 +2,19 @@
 #
 # Table name: posts
 #
-#  id             :integer          not null, primary key
-#  title          :string
-#  body           :text
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
-#  ancestry       :string
-#  ancestry_depth :integer          default(0)
-#  link           :string
-#  user_id        :integer          not null
-#  votes          :integer          default(0)
-#  subtreddit_id  :integer          not null
+#  id                :integer          not null, primary key
+#  title             :string
+#  body              :text
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  ancestry          :string
+#  ancestry_depth    :integer          default(0)
+#  link              :string
+#  user_id           :integer          not null
+#  votes             :integer          default(0)
+#  subtreddit_id     :integer          not null
+#  descendants_depth :integer          default(0)
+#  edited            :boolean          default(FALSE)
 #
 
 # = Post
