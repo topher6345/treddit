@@ -78,6 +78,7 @@ class PostsController < ApplicationController
       @post = Post.find(params[:id])
     end
 
+    # Assigns instance variable containing all the comments of a post
     def set_comments
        @comments = @post.comments
     end
