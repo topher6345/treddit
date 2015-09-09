@@ -36,12 +36,6 @@ class PostsController < ApplicationController
     @post = Post.new
   end
 
-  # TODO : add route and views for Post edit.
-  # No route exists for this action yet.
-  # Theres no user-edits-a-post feature yet.
-  def edit
-  end
-
   # Creates a new post
   def create
     @post = Post.new(post_params.merge(user_id: current_user.id))
