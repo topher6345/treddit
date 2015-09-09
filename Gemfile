@@ -17,6 +17,7 @@ gem 'jquery-turbolinks'
 gem 'foundation-icons-sass-rails'
 gem 'rails_12factor', group: :production
 gem 'redcarpet'
+gem 'puma'
 
 group :development, :test do
   gem 'byebug'
