@@ -50,4 +50,8 @@ class Post < ActiveRecord::Base
 
   # Convenience method that a Post can display what User wrote the post.
   delegate :email, to: :user
+
+  # Scope to query for front page
+  scope :front_page, -> { where(ancestry_depth: 0).includes(:user, :subtreddit)
+                            .order(descendants_depth: :desc) }
 end

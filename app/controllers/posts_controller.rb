@@ -21,7 +21,7 @@ class PostsController < ApplicationController
   # Displays all the root level Posts.
   # Serves as the 'Front Page' endpoint.
   def index
-    @posts = Post.where(ancestry_depth: 0).includes(:user, :subtreddit).order(descendants_depth: :desc)
+    @posts = Post.front_page
   end
 
   # Displays a Post and its descendants
