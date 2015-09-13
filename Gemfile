@@ -23,7 +23,6 @@ group :development, :test do
   gem 'byebug'
   gem 'web-console', '~> 2.0'
   gem 'spring'
-  gem 'simplecov'
   gem 'annotate'
   gem 'quiet_assets'
   gem 'faker'
@@ -31,3 +30,4 @@ group :development, :test do
 end
 
 gem 'letter_opener', group: :development
+gem 'simplecov', require: false, group: :test
