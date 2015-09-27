@@ -17,7 +17,6 @@ class PostsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-
   test "should create post" do
     sign_in users(:one)
     assert_difference('Post.count') do
@@ -30,21 +29,6 @@ class PostsControllerTest < ActionController::TestCase
       post :create, post: { body: nil, title: @post.title, subtreddit_id: subtreddits(:one).id  }
     end
 
-  end
-
-  test "should create comment on parent post" do
-    sign_in users(:one)
-    parent_post = @post
-
-    assert_difference('Post.count') do
-      post :create_comment, id: parent_post.id, body: 'A comment', subtreddit_id: subtreddits(:one).id
-    end
-
-    assert_redirected_to post_path(parent_post)
-
-    assert_no_difference('Post.count') do
-      post :create_comment, id: parent_post.id, body: nil, subtreddit_id: subtreddits(:one).id
-    end
   end
 
   test 'user must login to upvote post' do
