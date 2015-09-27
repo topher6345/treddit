@@ -11,10 +11,10 @@ module Commentable
   # Endpoint to create a comment or 'child Post' of an existing parent post.
   def create_comment
     @post = Post.find(params[:id])
-    @comment = Comment.create! create_comment_params
+    @comment = Comment.new create_comment_params
 
     respond_to do |format|
-      if @comment.save
+      if @comment.save!
         format.html { redirect_to @post.root, notice: 'Post was successfully created.' }
         format.json { render :show, status: :created, location: @post }
       else
