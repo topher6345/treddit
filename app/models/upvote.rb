@@ -55,23 +55,23 @@ class Upvote
   end
 
   def create_vote
-    fail DuplicateUpvote if Vote.exists?(user: @user, post: @post)
-    @vote = Vote.create! user: @user, post: @post
+    fail DuplicateUpvote if Vote.exists?(user: user, post: post)
+    @vote = Vote.create! user: user, post: post
   end
 
   def increment_post_votes
-    @post.increment(:votes)
-    @post.save!
+    post.increment(:votes)
+    post.save!
   end
 
   def destroy_vote
-    fail UpvoteNotFound unless Vote.exists?(user: @user, post: @post)
-    Vote.find_by(user: @user, post: @post).destroy!
+    fail UpvoteNotFound unless Vote.exists?(user: user, post: post)
+    Vote.find_by(user: user, post: post).destroy!
   end
 
   def decrement_post_votes
-    @post.decrement(:votes)
-    @post.save!
+    post.decrement(:votes)
+    post.save!
   end
 end
 
