@@ -1,21 +1,11 @@
-- if post.link.blank?
-  %header
-    = link_to post.title, post
-    %span.post-location (self)
-  %aside
-    submitted #{time_ago_in_words(post.created_at)} ago by
-    %span.post-user
-      = post.email
-    to
-    = link_to "tr/#{post.subtreddit.name}", pretty_subtreddit_path(post.subtreddit.name)
-  %nav= link_to comments(post.descendants_depth), post
-- else
-  %header
-    = link_to post.title, post.link, target: "_blank"
-    %span.post-location
-      (#{post.link})
-  %aside
-    submitted: #{time_ago_in_words(post.created_at)} ago by
-    %span.post-user
-      = post.email
-  %nav= link_to comments(post.descendants_depth), post
+%header
+  = post_link_to(post)
+  %span.post-location
+    = post_location(post)
+%aside
+  submitted #{time_ago_in_words(post.created_at)} ago by
+  %span.post-user
+    = post.email
+  = post_aside(post)
+%nav
+  = link_to comments(post.descendants_depth), post

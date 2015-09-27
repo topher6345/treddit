@@ -1,0 +1,9 @@
+%header
+  %span.post-show-user
+    = post_user(@post, post)
+    %i.fi-graph-trend.post-points
+    %span.post-points
+      =points(post.votes)
+  %i.fi-clock
+  %span.post-timestamps
+    = post_timestamps(post)

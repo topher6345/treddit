@@ -1,0 +1,6 @@
+%section
+  = render 'posts/show/votes'  , id: post.id
+  = render 'posts/show/header' , post: post
+  = render 'posts/show/article', body: post.body, id: post.id
+  = render 'posts/show/nav'    , post: post
+  = render 'posts/show/form'   , post: post

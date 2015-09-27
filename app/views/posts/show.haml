@@ -1,5 +1,5 @@
 .post-show
-  = render 'posts/show/post_title', post: @post
-  = render 'posts/show/post_reply', post: @post
+  = render 'posts/show/title'  , post: @post
+  = render 'posts/show/section', post: @post
   = arranged_tree_as_list(@comments) do |post|
-    = render 'posts/show/post_reply', post: post
+    = render 'posts/show/section', post: post

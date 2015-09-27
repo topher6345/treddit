@@ -1,0 +1,7 @@
+%article
+  .post-body
+    = markdown body
+  %textarea.hide
+    = body
+  %button.update-post.hide{ 'data-id' => id }
+    save

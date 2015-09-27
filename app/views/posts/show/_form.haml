@@ -1,0 +1,8 @@
+- if user_signed_in?
+  = form_tag(post_comment_path(post_id: post.id), method: 'post', id: "form#{post.hash}", class: 'hide') do
+    %p= text_area_tag(:body, '')
+    = submit_tag("save", )
+- else
+  %nav
+    %i.fi-comment
+    = link_to 'reply', new_user_session_path, notice: 'You must be logged in to leave comments!'
