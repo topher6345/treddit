@@ -19,7 +19,7 @@
 class Upvote
   include ActiveModel::Validations
   attr_accessor :user, :post
-  validates!    :user, :post, presence: true
+  validates     :user, :post, presence: true
 
   def self.create!(user:, post:)
     new(user: user, post: post).save!
@@ -46,7 +46,7 @@ class Upvote
 
   def destroy!
     ActiveRecord::Base.transaction do
-      valid?
+      fail unless valid?
       destroy_vote
       decrement_post_votes
     end
@@ -73,13 +73,13 @@ class Upvote
     post.decrement(:votes)
     post.save!
   end
+
+  # == Upvote Exception classes
+  #
+  # Raised when someone tries to upvote twice
+  # Enforced by database index in votes column.
+  class DuplicateUpvote < StandardError; end
+
+  # Raise when one tries to undo an upvote that doesn't exist
+  class UpvoteNotFound < StandardError; end
 end
-
-# == Upvote Exception classes
-#
-# Raised when someone tries to upvote twice
-# Enforced by database index in `votes table.
-class DuplicateUpvote < StandardError; end
-
-# Raise when one tries to undo an upvote that doesn't exist
-class UpvoteNotFound < StandardError; end
