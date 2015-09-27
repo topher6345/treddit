@@ -3,9 +3,6 @@
 # This class defines actions to directly interact with Post records.
 
 class PostsController < ApplicationController
-  # Add behavior to `upvote` a post.
-  include Upvoteable
-
   # Sets an instance variable to interact with an existing Post record.
   before_action :set_post, only: [:show, :update]
 
