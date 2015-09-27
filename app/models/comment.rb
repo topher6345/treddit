@@ -33,12 +33,14 @@ class Comment
 
   def save!
     ActiveRecord::Base.transaction do
-      fail unless valid?
+      fail StandardError, self.errors.messages unless valid?
       create_post
       update_ancestors_caches
     end
 
     @comment
+  rescue StandardError
+    false
   end
 
   # Creates the child post.
