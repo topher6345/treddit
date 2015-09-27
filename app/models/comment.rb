@@ -17,7 +17,7 @@ class Comment
   include ActiveModel::Validations
 
   attr_accessor :parent, :user, :body
-  validates!    :parent, :user, :body, presence: true
+  validates     :parent, :user, :body, presence: true
 
   # Creates a Comment for a parent post and returns created post
   def self.create!(attributes)
@@ -33,7 +33,7 @@ class Comment
 
   def save!
     ActiveRecord::Base.transaction do
-      valid?
+      fail unless valid?
       create_post
       update_ancestors_caches
     end
@@ -43,7 +43,7 @@ class Comment
 
   # Creates the child post.
   def create_post
-    @comment = @parent.children.create! comment_params
+    @comment = parent.children.create! comment_params
 
     self
   end
@@ -63,9 +63,9 @@ class Comment
   # The parameters needed to create a Post AR model.
   def comment_params
     @comment_params ||= {
-      body: @body,
-      user_id: @user.id,
-      subtreddit_id: @parent.subtreddit_id
+      body: body,
+      user_id: user.id,
+      subtreddit_id: parent.subtreddit_id
     }
   end
 end
