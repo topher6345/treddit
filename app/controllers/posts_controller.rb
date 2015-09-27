@@ -3,9 +3,6 @@
 # This class defines actions to directly interact with Post records.
 
 class PostsController < ApplicationController
-  # Add behavior to create a child post, or comment to another (parent) Post
-  include Commentable
-
   # Add behavior to `upvote` a post.
   include Upvoteable
 
