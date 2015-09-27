@@ -5,8 +5,8 @@ $(document).ready( ->
   # Attaches click handler to AJAX upvote a post
   $('.post-upvote-arrow').on 'click', ->
     $.ajax
-      type: 'PUT'
-      url: "/post/#{$(this).data('id')}/upvote"
+      type: 'POST'
+      url: "/posts/#{$(this).data('id')}/upvotes"
       success: ->
         Turbolinks.enableTransitionCache(true)
         Turbolinks.visit(location.toString())
@@ -16,7 +16,7 @@ $(document).ready( ->
   $('.post-upvote-arrow-undo').on 'click', ->
     $.ajax
       type: 'DELETE'
-      url: "/post/#{$(this).data('id')}/upvote"
+      url: "/posts/#{$(this).data('id')}/upvotes"
       success: ->
         Turbolinks.enableTransitionCache(true)
         Turbolinks.visit(location.toString())
