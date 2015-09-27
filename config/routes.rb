@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   # Routes for Posts
   resources :posts, except: [:edit, :destroy] do
     resource :comments, only: [:create], as: 'comment'
+    resource :upvotes, only: [:create, :destroy]
   end
 
   # Makes root path 'front page' or Posts#index
