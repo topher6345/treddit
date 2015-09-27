@@ -1,6 +1,6 @@
 # = Upvoteable
 #
-
+# This class defines actions to add/remove upvotes to Posts.
 
 class UpvotesController < ApplicationController
 
