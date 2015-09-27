@@ -1,29 +1,25 @@
 Rails.application.routes.draw do
 
-  # Routes for Subtreddits
-  resources :subtreddits,  only: [:index, :show, :new, :create]
+  # Makes root path 'front page' or Posts#index
+  root 'posts#index'
+
+  # Pretty URL to display all the posts in a Subtreddit.
+  get 'tr/:name', to: 'subtreddits#show', as: 'pretty_subtreddit'
+
+  # Routes for Posts
+  resources :posts, except: [:edit, :destroy] do
+
+    # Route to create a child Post (or comment) of a Post
+    resource :comments, only: [:create], as: 'comment'
+
+    # Endpoint to add an upvote to a post
+    resource :upvotes, only: [:create, :destroy]
+  end
 
   # Routes for Devise Users - login/signup etc.
   devise_for :users
 
-  # Routes for Posts
-  resources :posts, except: [:edit, :destroy] do
-    resource :comments, only: [:create], as: 'comment'
-    resource :upvotes, only: [:create, :destroy]
-  end
+  # Routes for Subtreddits
+  resources :subtreddits,  only: [:index, :show, :new, :create]
 
-  # Makes root path 'front page' or Posts#index
-  root 'posts#index'
-
-  # Route to create a child Post (or comment) of a Post
-  # post 'post/:id/comments', to: 'comments#create'
-
-  # Endpoint to add an upvote to a post
-  put 'post/:id/upvote', to: 'posts#upvote', as: 'upvote_post'
-
-  # Endpoint to undo an upvote
-  delete 'post/:id/upvote', to: 'posts#destroy_upvote', as: 'destroy_upvote'
-
-  # Pretty URL to display all the posts in a Subtreddit.
-  get 'tr/:name', to: 'subtreddits#show', as: 'pretty_subtreddit'
 end
