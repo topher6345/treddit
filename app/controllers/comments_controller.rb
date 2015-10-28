@@ -8,7 +8,7 @@ class CommentsController < ApplicationController
 
   # Endpoint to create a comment or 'child Post' of an existing parent post.
   def create
-    @comment = Comment.new comment_params
+    @comment = create_comment
 
     respond_to do |format|
       if @comment.save!
@@ -20,8 +20,8 @@ class CommentsController < ApplicationController
       end
     end
 
-  rescue ActiveModel::StrictValidationFailed => e
-    # render :new, notice: @comment.errors
+  rescue ActiveRecord::RecordInvalid => e
+    redirect_to @post, notice: @comment.try(:messages).try(:errors)
   end
 
   private
@@ -32,6 +32,14 @@ class CommentsController < ApplicationController
 
   # Defines whitelisted parameters accepted by this action.
   def comment_params
-    params.permit(:body).merge( parent: @post, user: current_user )
+    params.permit(:body).merge(parent: @post, user: current_user )
+  end
+
+  def create_comment
+    Comment.new(
+      body:   comment_params[:body],
+      parent: comment_params[:parent],
+      user:   comment_params[:user]
+    )
   end
 end
