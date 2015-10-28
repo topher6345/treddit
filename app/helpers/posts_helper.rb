@@ -33,11 +33,11 @@ module PostsHelper
     end
   end
 
-  def post_link_to(post)
+  def post_link_to(post, index)
     if post.link.blank?
-      link_to post.title, post
+      link_to "#{index} #{post.title}", post
     else
-      link_to post.title, post.link, target: "_blank"
+      link_to "#{index} #{post.title}", post.link, target: "_blank"
     end
   end
 
