@@ -20,13 +20,13 @@ gem 'redcarpet'
 gem 'puma'
 
 group :development, :test do
-  gem 'byebug'
   gem 'web-console', '~> 2.0'
   gem 'spring'
   gem 'annotate'
   gem 'quiet_assets'
   gem 'faker'
   gem 'bullet'
+  gem 'pry'
 end
 
 gem 'letter_opener', group: :development
