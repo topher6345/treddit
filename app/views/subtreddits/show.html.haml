@@ -6,8 +6,6 @@
 
 - @posts.each.with_index(1) do |post, index|
   .row.post-row
-    .small-1.columns
-      = index
-    .small-11.columns
-      = render 'posts/index/post_row', post: post
+    .small-12.columns
+      = render 'posts/index/post_row', post: post, index: index
 
