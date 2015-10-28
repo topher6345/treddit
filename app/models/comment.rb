@@ -13,11 +13,8 @@
 # through which it caches the count of its descendant posts(a.k.a. total comments)
 
 class Comment
-  # Public method to access created post.
-  include ActiveModel::Validations
-
-  attr_accessor :parent, :user, :body
-  validates     :parent, :user, :body, presence: true
+  extend Forwardable
+  def_delegator :@comment, :messages, :errors
 
   # Creates a Comment for a parent post and returns created post
   def self.create!(attributes)
@@ -25,49 +22,32 @@ class Comment
   end
 
   # Sets instance variables.
-  def initialize(attributes={})
-    @parent = attributes[:parent]
-    @body = attributes[:body]
-    @user = attributes[:user]
+  def initialize(parent:, body:, user:)
+    @children       = parent.children
+    @comment_params = {
+      body:          body,
+      user_id:       user.id,
+      subtreddit_id: parent.subtreddit_id
+    }
   end
 
   def save!
     ActiveRecord::Base.transaction do
-      fail StandardError, self.errors.messages unless valid?
-      create_post
-      update_ancestors_caches
+      @comment = create_post! @comment_params
+      update_ancestors! @comment.ancestors
     end
-
     @comment
-  rescue StandardError
-    false
   end
 
   # Creates the child post.
-  def create_post
-    @comment = parent.children.create! comment_params
-
-    self
+  def create_post!(params)
+    @children.create! params
   end
 
   # Updates the comments count for **all ancestors**.
-  def update_ancestors_caches
-    @comment.ancestors.each do |ancestor|
-      ancestor.increment(:descendants_depth)
-      ancestor.save!
+  def update_ancestors!(ancestors)
+    ancestors.each do |post|
+      post.increment(:descendants_depth).save!
     end
-
-    self
-  end
-
-  private
-
-  # The parameters needed to create a Post AR model.
-  def comment_params
-    @comment_params ||= {
-      body: body,
-      user_id: user.id,
-      subtreddit_id: parent.subtreddit_id
-    }
   end
 end
