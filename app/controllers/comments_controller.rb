@@ -12,10 +12,10 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if @comment.save!
-        format.html { redirect_to @post.root, notice: 'Post was successfully created.' }
+        format.html { redirect_to post_path(@post.root), notice: 'Post was successfully created.' }
         # format.json { render :show, status: :created, location: @post }
       else
-        format.html { redirect_to @post.root, notice: 'Error: Comment was not made.' }
+        format.html { redirect_to post_path(@post.root), notice: 'Error: Comment was not made.' }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
       end
     end
