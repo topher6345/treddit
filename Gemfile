@@ -18,6 +18,7 @@ gem 'foundation-icons-sass-rails'
 gem 'rails_12factor', group: :production
 gem 'redcarpet'
 gem 'puma'
+gem 'newrelic_rpm'
 
 group :development, :test do
   gem 'web-console', '~> 2.0'
