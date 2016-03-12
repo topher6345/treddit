@@ -20,8 +20,8 @@ gem 'redcarpet'
 gem 'puma'
 # gem 'newrelic_rpm'
 
+gem 'web-console', '~> 2.0', group: :development
 group :development, :test do
-  gem 'web-console', '~> 2.0'
   gem 'spring'
   gem 'annotate'
   gem 'quiet_assets'
