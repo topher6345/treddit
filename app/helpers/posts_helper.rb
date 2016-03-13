@@ -59,6 +59,7 @@ module PostsHelper
     )
   rescue ::ImgurUrl::InvalidUrl
     "no url"
+  rescue
   end
 
   def post_title(post)
