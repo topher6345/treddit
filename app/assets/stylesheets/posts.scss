@@ -150,3 +150,25 @@ aside {
   color: $primary-color;
   cursor: pointer;
 }
+
+
+.index-col, .vote-col {
+  display: inline-block;
+}
+
+.index-col {
+  font-weight: 100;
+}
+
+.vote-col {
+  margin: 0 auto;
+  min-width: 4em;
+  text-align: center;
+  padding-top: 1em;
+  line-height: 1em;
+  font-weight: bold;
+}
+
+.upvote, .vote-count {
+  display: block
+}
