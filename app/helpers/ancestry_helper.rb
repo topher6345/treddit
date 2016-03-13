@@ -39,7 +39,7 @@ module AncestryHelper
     current_depth = 0
     # and here... we... go...
     hash.each do |object, children|
-
+        section = capture(object, &block)
         li_classes = options[:li_class]
 
         if object.ancestry_depth == 0
@@ -49,11 +49,12 @@ module AncestryHelper
         end
 
         if children.size > 0
-          #  http://api.rubyonrails.org/classes/ActionView/Helpers/CaptureHelper.html
-          output << content_tag(:li, capture(object, &block) + arranged_tree_as_list(children, options, &block).html_safe,  :class => li_classes)
+          li = content_tag(:section, section + arranged_tree_as_list(children, options, &block).html_safe)
+          # li = section + arranged_tree_as_list(children, options, &block).html_safe
+          output << content_tag(:li, li,  :class => li_classes)
         else
-          #  http://api.rubyonrails.org/classes/ActionView/Helpers/CaptureHelper.html
-          output << content_tag(:li, capture(object, &block), :class => li_classes).html_safe
+          li = content_tag(:section, section)
+          output << content_tag(:li, li, :class => li_classes).html_safe
           current_depth = object.ancestry_depth
         end
 
