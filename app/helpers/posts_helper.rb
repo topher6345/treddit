@@ -19,7 +19,7 @@ module PostsHelper
 
   def post_location(post)
     if post.link.blank?
-      "(self)"
+      "(self.#{post.subtreddit.name})"
     else
       post.link
     end
