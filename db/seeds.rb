@@ -48,7 +48,7 @@ end
 end
 
 while(Vote.count < 40)
-  Upvote.create!(user: users.sample, post: posts.sample) rescue DuplicateUpvote
+  Upvote.create!(user: users.sample, post: posts.sample) rescue Upvote::DuplicateUpvote
 end
 
 
