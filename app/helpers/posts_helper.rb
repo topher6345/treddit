@@ -33,11 +33,11 @@ module PostsHelper
     end
   end
 
-  def post_link_to(post, index)
+  def post_link_to(post, _index)
     if post.link.blank?
-      link_to "#{index} #{post.title}", post
+      link_to "#{post.title}", post
     else
-      link_to "#{index} #{post.title}", post.link, target: "_blank"
+      link_to "#{post.title}", post.link, target: "_blank"
     end
   end
 
@@ -48,5 +48,24 @@ module PostsHelper
       output << link_to("tr/#{post.subtreddit.name}", pretty_subtreddit_path(post.subtreddit.name))
     end
     output
+  end
+
+  def post_imgur_link(link)
+    return unless link
+    url = ImgurUrl::Image.new(link).url(:small)
+    content_tag(:a,
+      content_tag(:img, '', src: url),
+      href: url
+    )
+  rescue ::ImgurUrl::InvalidUrl
+    "no url"
+  end
+
+  def post_title(post)
+    if post.link
+      content_tag(:a, post.title, href: post.link)
+    else
+      post.title
+    end
   end
 end

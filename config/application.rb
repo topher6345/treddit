@@ -6,6 +6,20 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+module ImgurUrl
+  class Image
+    def id
+      matches = @original_url.match(%r{^http://(?:i\.)?imgur\.com/(?:download/)?([^.#?/]{5,})})
+
+      if matches[1] == 'gallery'
+        @id ||=  @original_url.match(%r{^http://(?:i\.)?imgur\.com/gallery/(?:download/)?([^.#?/]{5,})}).andand[1]
+      else
+        @id ||= matches.andand[1]
+      end
+    end
+  end
+end
+
 module Treddit
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.

@@ -1,14 +1,34 @@
 - @posts.each.with_index(1) do |post, index|
   .row.post-row
-    .small-12.columns
-      %header
-        = post_link_to(post, index)
-        %span.post-location
-          = post_location(post)
-      %aside
-        submitted #{time_ago_in_words(post.created_at)} ago by
-        %span.post-user
-          = post.email
-        = post_aside(post)
-      %nav
-        = link_to comments(post.descendants_depth), post
+    - if imgur_link = post_imgur_link(post.link)
+      .small-1.columns
+        = index
+      .small-1.columns
+        = imgur_link
+      .small-10.columns
+        %header
+          = post_link_to(post, index)
+          %span.post-location
+            = post_location(post)
+        %aside
+          submitted #{time_ago_in_words(post.created_at)} ago by
+          %span.post-user
+            = post.email
+          = post_aside(post)
+        %nav
+          = link_to comments(post.descendants_depth), post
+    - else
+      .small-1.columns
+        = index
+      .small-11.columns
+        %header
+          = post_link_to(post, index)
+          %span.post-location
+            = post_location(post)
+        %aside
+          submitted #{time_ago_in_words(post.created_at)} ago by
+          %span.post-user
+            = post.email
+          = post_aside(post)
+        %nav
+          = link_to comments(post.descendants_depth), post
