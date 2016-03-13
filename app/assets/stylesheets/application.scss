@@ -33,3 +33,10 @@ html.turbolinks-progress-bar::before {
 body {
   background-color: $body-background;
 }
+
+
+@media (max-width: 876px) {
+  .nav-motto {
+    display: none;
+  }
+}
