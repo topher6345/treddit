@@ -19,6 +19,8 @@ gem 'rails_12factor', group: :production
 gem 'redcarpet'
 gem 'puma'
 gem 'imgur_url'
+gem 'httparty'
+gem 'rack-cache', group: :production
 # gem 'newrelic_rpm'
 
 gem 'web-console', '~> 2.0', group: :development

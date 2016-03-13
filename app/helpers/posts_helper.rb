@@ -62,6 +62,15 @@ module PostsHelper
   rescue
   end
 
+  def post_imgur_image(link)
+    Rails.logger.debug "computing #{link}"
+    image = ImgurUrl::Image.new(link)
+    url = image.url(:medium)
+    res = HTTParty.get("https://api.imgur.com/3/gallery/#{image.id}")
+    src = res['data']['images'][0]['link'].gsub(".jpg", "l.jpg")
+    content_tag(:a, content_tag(:img, '', src: src), href: url)
+  end
+
   def post_title(post)
     if post.link
       content_tag(:a, post.title, href: post.link)

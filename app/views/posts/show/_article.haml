@@ -1,4 +1,7 @@
 %article
+  - if link
+    = cache u(link) do
+      = post_imgur_image(link)
   .post-body
     = markdown body
   %textarea.hide
