@@ -21,7 +21,7 @@ module PostsHelper
     if post.link.blank?
       "(self.#{post.subtreddit.name})"
     else
-      post.link
+      "(#{post.link})"
     end
   end
 
