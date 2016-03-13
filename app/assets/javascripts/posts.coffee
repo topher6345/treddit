@@ -2,6 +2,11 @@
 
 $(document).ready( ->
 
+  # To collapse a post
+  # TODO: make this collapse the children
+  $('.collapser').on 'click', ->
+    $(this).parent().parent().toggleClass 'post-collapse'
+
   # Attaches click handler to AJAX upvote a post
   $('.post-upvote-arrow').on 'click', ->
     $.ajax
