@@ -16,6 +16,8 @@
  */
 
 @import 'foundation-icons';
+$body-background: #fAfAfA;
+
 .site-logo {
   margin-bottom: 0;
   a {
@@ -26,4 +28,15 @@
 html.turbolinks-progress-bar::before {
   background-color: red !important;
   height: 5px !important;
+}
+
+body {
+  background-color: $body-background;
+}
+
+
+@media (max-width: 876px) {
+  .nav-motto {
+    display: none;
+  }
 }
