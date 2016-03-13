@@ -32,3 +32,4 @@ end
 
 gem 'letter_opener', group: :development
 gem 'simplecov', require: false, group: :test
+gem 'rails-controller-testing', group: :test
