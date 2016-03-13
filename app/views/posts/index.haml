@@ -2,45 +2,13 @@
   .row.post-row
     - if imgur_link = post_imgur_link(post.link)
       .small-1.columns
-        .index-col
-          = index
-        .vote-col
-          .upvote
-            = content_tag(:i, '', class: "fi-arrow-up")
-          .vote-count
-            = post.votes
+        = render 'posts/index/vote_col', votes: post.votes, index: index
       .small-1.columns
         = imgur_link
       .small-10.columns
-        %header
-          = post_link_to(post, index)
-          %span.post-location
-            = post_location(post)
-        %aside
-          submitted #{time_ago_in_words(post.created_at)} ago by
-          %span.post-user
-            = post.email
-          = post_aside(post)
-        %nav
-          = link_to comments(post.descendants_depth), post
+        = render 'posts/index/post_row', post: post, index: index
     - else
       .small-1.columns
-        .index-col
-          = index
-        .vote-col
-          .upvote
-            = content_tag(:i, '', class: "fi-arrow-up")
-          .vote-count
-            = post.votes
+        = render 'posts/index/vote_col', votes: post.votes, index: index
       .small-11.columns
-        %header
-          = post_link_to(post, index)
-          %span.post-location
-            = post_location(post)
-        %aside
-          submitted #{time_ago_in_words(post.created_at)} ago by
-          %span.post-user
-            = post.email
-          = post_aside(post)
-        %nav
-          = link_to comments(post.descendants_depth), post
+        = render 'posts/index/post_row', post: post, index: index
