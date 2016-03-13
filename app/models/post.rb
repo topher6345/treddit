@@ -54,7 +54,7 @@ class Post < ActiveRecord::Base
   # Defines a scope to query for front page
   scope :front_page, -> { where(ancestry_depth: 0).
                           includes(:user, :subtreddit).
-                          order(descendants_depth: :desc) }
+                          order(votes: :desc) }
 
   # Queries all comments for a post
   def comments
