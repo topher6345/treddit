@@ -6,13 +6,13 @@ class UpvotesControllerTest < ActionController::TestCase
   end
 
   test 'user must login to upvote post' do
-    put :create, post_id: @post
+    process :create, method: :put, params: { post_id: @post }
     assert_redirected_to new_user_session_path
   end
 
   test 'signed in user can upvote post' do
     sign_in users(:one)
-    put :create, post_id: @post
+    process :create, method: :put, params: { post_id: @post }
     assert_response :success
   end
 
@@ -20,10 +20,10 @@ class UpvotesControllerTest < ActionController::TestCase
     sign_in users(:one)
 
     # Add upvote
-    put :create, post_id: @post
+    process :create, method: :put, params: { post_id: @post }
     assert_response :success, 'Could not create upvote to test destroy upvote'
 
-    delete :destroy, post_id: @post
+    process :destroy, method: :delete, params: { post_id: @post }
     assert_response :success
   end
 end

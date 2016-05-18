@@ -35,5 +35,7 @@ group :development, :test do
   gem 'pry'
   gem 'simplecov'
   gem 'letter_opener', group: :development
-  gem 'rails-controller-testing', group: :test
 end
+
+gem 'rails-controller-testing'
+

@@ -24,7 +24,8 @@ class SubtredditsControllerTest < ActionController::TestCase
 
   test 'should not create subtreddit if not logged in' do
     assert_no_difference('Subtreddit.count') do
-      post :create, subtreddit: { description: 'My favorite instrument.', name: 'Guitar' }
+      subtreddit = { description: 'My favorite instrument.', name: 'Guitar' }
+      process :create, method: :post, params: { subtreddit: subtreddit }
     end
 
     assert_redirected_to new_user_session_path
@@ -34,14 +35,16 @@ class SubtredditsControllerTest < ActionController::TestCase
     sign_in users(:one)
 
     assert_difference('Subtreddit.count') do
-      post :create, subtreddit: { description: 'My favorite instrument.', name: 'Guitar' }
+      subtreddit = { description: 'My favorite instrument.', name: 'Guitar' }
+      process :create, method: :post, params: { subtreddit: subtreddit }
     end
 
     assert_redirected_to subtreddit_path(assigns(:subtreddit))
   end
 
   test "should show subtreddit" do
-    get :show, name: @subtreddit.name
+    process :show, method: :get, params: { name: @subtreddit.name }
+
     assert_equal @subtreddit.posts.where(ancestry_depth: 0), assigns(:posts)
     assert_response :success
   end
@@ -54,7 +57,8 @@ class SubtredditsControllerTest < ActionController::TestCase
 
   test "should update subtreddit" do
     skip
-    patch :update, id: @subtreddit, subtreddit: { description: @subtreddit.description, name: @subtreddit.name }
+    subtreddit = { description: @subtreddit.description, name: @subtreddit.name }
+    patch :update, id: @subtreddit, subtreddit: subtreddit
     assert_redirected_to subtreddit_path(assigns(:subtreddit))
   end
 
