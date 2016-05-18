@@ -1,6 +1,8 @@
-.post-show
-  = render 'posts/show/title'  , post: @post
-  %section
-    = render 'posts/show/section', post: @post
-  = arranged_tree_as_list(@comments) do |post|
-    = render 'posts/show/section', post: post
+= cache @post do
+  .post-show
+    = render 'posts/show/title', post: @post
+    %section
+      = render 'posts/show/section', post: @post
+    = cache @comments do
+      = arranged_tree_as_list(@comments) do |post|
+        = render 'posts/show/section', post: post

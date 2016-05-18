@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
-ruby '2.3.0'
-gem 'rails', '~> 5.0.0.beta3'
+ruby '2.3.1'
+gem 'rails', '~> 5.0.0.rc1'
 gem 'pg'
 gem 'sass-rails', '~> 5.0'
 gem 'foundation-rails', '5.5.2.1'
@@ -12,7 +12,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'ancestry'
 gem 'haml-rails'
-gem 'devise', github: 'plataformatec/devise'
+gem 'devise'
 gem 'jquery-turbolinks'
 gem 'foundation-icons-sass-rails'
 gem 'rails_12factor', group: :production
@@ -22,7 +22,8 @@ gem 'imgur_url'
 gem 'httparty'
 gem 'rack-cache', group: :production
 # gem 'newrelic_rpm'
-
+gem 'rack-mini-profiler', require: false
+# gem 'flamegraph'
 gem 'web-console', '~> 2.0', group: :development
 group :development, :test do
   gem 'spring'
@@ -30,9 +31,9 @@ group :development, :test do
   gem 'quiet_assets'
   gem 'faker'
   gem 'bullet'
+  gem 'brakeman'
   gem 'pry'
+  gem 'simplecov'
+  gem 'letter_opener', group: :development
+  gem 'rails-controller-testing', group: :test
 end
-
-gem 'letter_opener', group: :development
-gem 'simplecov', require: false, group: :test
-gem 'rails-controller-testing', group: :test
