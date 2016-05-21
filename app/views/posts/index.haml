@@ -1,14 +1,15 @@
-- @posts.each.with_index(1) do |post, index|
-  .row.post-row
-    - if imgur_link = post_imgur_link(post.link)
-      .small-1.columns
-        = render 'posts/index/vote_col', votes: post.votes, index: index
-      .small-1.columns
-        = imgur_link
-      .small-10.columns
-        = render 'posts/index/post_row', post: post, index: index
-    - else
-      .small-1.columns
-        = render 'posts/index/vote_col', votes: post.votes, index: index
-      .small-11.columns
-        = render 'posts/index/post_row', post: post, index: index
+- cache @posts do
+  - @posts.each.with_index(1) do |post, index|
+    .row.post-row
+      - if imgur_link = post_imgur_link(post.link)
+        .small-1.columns
+          = render 'posts/index/vote_col', votes: post.votes, index: index, cache: true
+        .small-1.columns
+          = imgur_link
+        .small-10.columns
+          = render 'posts/index/post_row', post: post, index: index, cache: true
+      - else
+        .small-1.columns
+          = render 'posts/index/vote_col', votes: post.votes, index: index, cache: true
+        .small-11.columns
+          = render 'posts/index/post_row', post: post, index: index, cache: true

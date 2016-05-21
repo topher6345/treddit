@@ -1,6 +1,8 @@
 %dl.sub-nav
   %dd
     = link_to 'Front Page', root_path
-  - Subtreddit.all.pluck(:name).each do |subtreddit|
-    %dd
-      = link_to subtreddit.capitalize, pretty_subtreddit_path(subtreddit)
+  - @subtreddits = Subtreddit.all.pluck(:name)
+  - cache @subtreddits do
+    - @subtreddits.each do |subtreddit|
+      %dd
+        = link_to subtreddit.capitalize, pretty_subtreddit_path(subtreddit)

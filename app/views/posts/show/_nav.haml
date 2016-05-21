@@ -1,9 +1,10 @@
-- if user_signed_in?
-  %nav
-    %i.fi-comment
-    %a(class="reply-button" data-id="form#{post.hash}")
-      reply
-    -if post.user == current_user
-      %i.fi-pencil
-      %a(class="edit-button" data-id="edit#{post.hash}")
-        edit
+- cache_unless(user_signed_in?, post) do
+  - if user_signed_in?
+    %nav
+      %i.fi-comment
+      %a(class="reply-button" data-id="form--#{post.hash}")
+        reply
+      -if post.user == current_user
+        %i.fi-pencil
+        %a(class="edit-button" data-id="edit--#{post.hash}")
+          edit

@@ -23,7 +23,8 @@ gem 'httparty'
 gem 'rack-cache', group: :production
 # gem 'newrelic_rpm'
 gem 'rack-mini-profiler', require: false
-# gem 'flamegraph'
+gem 'flamegraph'
+gem 'stackprof'
 gem 'web-console', '~> 2.0', group: :development
 group :development, :test do
   gem 'spring'

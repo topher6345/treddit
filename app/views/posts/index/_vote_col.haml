@@ -1,7 +1,8 @@
-.index-col
-  = index
-.vote-col
-  .upvote
-    = content_tag(:i, '', class: "fi-arrow-up")
-  .vote-count
-    = votes
+- cache votes do
+  .index-col
+    = index
+  .vote-col
+    .upvote
+      = content_tag(:i, '', class: "fi-arrow-up")
+    .vote-count
+      = votes

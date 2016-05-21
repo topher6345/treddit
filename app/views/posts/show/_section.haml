@@ -1,5 +1,6 @@
-= render 'posts/show/votes'  , id: post.id
-= render 'posts/show/header' , post: post
-= render 'posts/show/article', body: post.body, id: post.id, link: post.link
-= render 'posts/show/nav'    , post: post
-= render 'posts/show/form'   , post: post
+- cache post do
+  = render 'posts/show/votes'  , post: post, cache: true
+  = render 'posts/show/header' , post: post, cache: true
+  = render 'posts/show/article', post: post, cache: true
+  = render 'posts/show/nav'    , post: post, cache: true
+  = render 'posts/show/form'   , post: post, cache: true

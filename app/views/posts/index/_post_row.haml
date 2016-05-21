@@ -1,11 +1,12 @@
-%header
-  = post_link_to(post, index)
-  %span.post-location
-    = post_location(post)
-%aside
-  submitted #{time_ago_in_words(post.created_at)} ago by
-  %span.post-user
-    = post.email
-  = post_aside(post)
-%nav
-  = link_to comments(post.descendants_depth), post
+- cache post do
+  %header
+    = post_link_to(post, index)
+    %span.post-location
+      = post_location(post)
+  %aside
+    submitted #{time_ago_in_words(post.created_at)} ago by
+    %span.post-user
+      = post.email
+    = post_aside(post)
+  %nav
+    = link_to comments(post.descendants_depth), post
