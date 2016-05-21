@@ -26,6 +26,9 @@ gem 'rack-mini-profiler', require: false
 gem 'flamegraph'
 gem 'stackprof'
 gem 'web-console', '~> 2.0', group: :development
+gem 'faker'
+gem 'letter_opener'
+gem 'redis'
 group :development, :test do
   gem 'spring'
   gem 'annotate'
@@ -35,7 +38,6 @@ group :development, :test do
   gem 'brakeman'
   gem 'pry'
   gem 'simplecov'
-  gem 'letter_opener', group: :development
 end
 
 gem 'rails-controller-testing'
