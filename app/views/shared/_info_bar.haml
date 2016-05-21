@@ -1,6 +1,8 @@
 %dl.sub-nav
   %dd
     = link_to 'Front Page', root_path
+  %dd
+    = link_to 'Live Stream', stream_index_path
   - @subtreddits = Subtreddit.all.pluck(:name)
   - cache @subtreddits do
     - @subtreddits.each do |subtreddit|

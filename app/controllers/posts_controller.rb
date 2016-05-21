@@ -3,6 +3,9 @@
 # This class defines actions to directly interact with Post records.
 
 class PostsController < ApplicationController
+  # Allow post to broadcast new posts
+  include Broadcastable
+
   # Sets an instance variable to interact with an existing Post record.
   before_action :set_post, only: [:show, :update]
 
@@ -36,6 +39,8 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
+        broadcast_new_post @post
+
         format.html { redirect_to @post, notice: 'Post was successfully created.' }
         format.json { render :show, status: :created, location: @post }
       else
@@ -44,7 +49,6 @@ class PostsController < ApplicationController
       end
     end
   end
-
 
   # Updates a post and marks the record as edited.
   def update

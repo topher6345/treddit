@@ -1,0 +1,5 @@
+%h1 Live Stream
+%ul#live-stream
+  - @posts.each do |post|
+    %li
+      = render 'stream/index/post', post: post, cache: true

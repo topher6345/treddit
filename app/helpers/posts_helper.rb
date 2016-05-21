@@ -9,12 +9,9 @@ module PostsHelper
     output
   end
 
-  def post_user(op, post)
-    if op.user == post.user
-      content_tag(:span, post.email, class: "post-root-user")
-    else
-      post.email
-    end
+  def post_user(op=nil, post)
+    return post.email unless op.try(:user) == post.user
+    content_tag(:span, post.email, class: "post-root-user")
   end
 
   def post_location(post)

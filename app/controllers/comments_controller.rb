@@ -32,7 +32,7 @@ class CommentsController < ApplicationController
 
   # Defines whitelisted parameters accepted by this action.
   def comment_params
-    params.permit(:body).merge(parent: @post, user: current_user )
+    params.permit(:body).merge(parent: @post, user: current_user)
   end
 
   def create_comment
