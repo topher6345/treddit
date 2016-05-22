@@ -21,7 +21,7 @@ gem 'puma'
 gem 'imgur_url'
 gem 'httparty'
 gem 'rack-cache', group: :production
-# gem 'newrelic_rpm'
+gem 'newrelic_rpm'
 gem 'rack-mini-profiler', require: false
 gem 'flamegraph'
 gem 'stackprof'
