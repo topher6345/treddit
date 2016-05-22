@@ -26,6 +26,8 @@ gem 'rack-mini-profiler', require: false
 gem 'flamegraph'
 gem 'stackprof'
 gem 'web-console', '~> 2.0', group: :development
+gem 'redis'
+gem 'redis-rails', '~> 5.0.0.pre'
 group :development, :test do
   gem 'spring'
   gem 'annotate'
