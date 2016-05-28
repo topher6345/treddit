@@ -15,12 +15,11 @@ gem 'haml-rails'
 gem 'devise'
 gem 'jquery-turbolinks'
 gem 'foundation-icons-sass-rails'
-gem 'rails_12factor', group: :production
+gem 'rails_12factor'
 gem 'redcarpet'
 gem 'puma'
 gem 'imgur_url'
 gem 'httparty'
-gem 'rack-cache', group: :production
 # gem 'newrelic_rpm'
 gem 'rack-mini-profiler', require: false
 gem 'flamegraph'
@@ -30,6 +29,8 @@ gem 'faker'
 gem 'letter_opener'
 gem 'redis'
 gem 'redis-rails', '~> 5.0.0.pre'
+gem 'pry'
+gem 'quiet_assets', group: :development
 group :development, :test do
   gem 'spring'
   gem 'annotate'
