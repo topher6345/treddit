@@ -1,8 +1,8 @@
-- cache @post do
+- cache cache_key_for_post(@post) do
   .post-show
     = render 'posts/show/title', post: @post, cache: true
     %section
       = render 'posts/show/section', post: @post, cache: true
-    - cache @comments do
       = arranged_tree_as_list(@comments) do |post|
         = render 'posts/show/section', post: post, cache: true
+

@@ -10,3 +10,4 @@
     %i.fi-clock
     %span.post-timestamps
       = post_timestamps(post)
+      = time_ago_in_words(post.updated_at)

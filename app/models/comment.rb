@@ -14,7 +14,7 @@
 
 class Comment
   extend Forwardable
-  def_delegator :@comment, :messages, :errors
+  def_delegators :@comment, :messages, :errors, :link, :subtreddit, :title, :created_at, :parent, :root, :body, :id, :cache_key, :ancestors, :siblings
 
   # Creates a Comment for a parent post and returns created post
   def self.create!(attributes)
@@ -36,6 +36,7 @@ class Comment
       @comment = create_post! @comment_params
       update_ancestors! @comment.ancestors
     end
+    fail unless @comment
     @comment
   end
 
@@ -47,6 +48,7 @@ class Comment
   # Updates the comments count for **all ancestors**.
   def update_ancestors!(ancestors)
     ancestors.each do |post|
+      post.touch
       post.increment(:descendants_depth).save!
     end
   end

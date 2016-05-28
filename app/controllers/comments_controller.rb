@@ -3,6 +3,9 @@
 # This class defines actions to comment on Posts.
 
 class CommentsController < ApplicationController
+  # Allow post to broadcast new posts
+  include Broadcastable
+
   # Sets an instance variable to interact with an existing Post record.
   before_action :set_post, only: [:create]
 
@@ -12,6 +15,10 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if @comment.save!
+        @post.touch and @comment.ancestors.each(&:touch)
+
+        broadcast_new_post @comment
+
         format.html { redirect_to post_path(@post.root), notice: 'Post was successfully created.' }
         # format.json { render :show, status: :created, location: @post }
       else
