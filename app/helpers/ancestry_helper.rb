@@ -50,11 +50,11 @@ module AncestryHelper
 
         current_depth = object.ancestry_depth
         if children.size > 0
-          li = content_tag(:section, section + arranged_tree_as_list(children, options, &block).html_safe, class: :"depth-#{current_depth % 2}")
+          li = content_tag(:section, section + arranged_tree_as_list(children, options, &block).html_safe, class: :"depth-#{current_depth % 2}", :id => "H#{object.id}")
           # li = section + arranged_tree_as_list(children, options, &block).html_safe
           output << content_tag(:li, li,  :class => li_classes)
         else
-          li = content_tag(:section, section, class: :"depth-#{current_depth % 2}")
+          li = content_tag(:section, section, class: :"depth-#{current_depth % 2}", :id => "H#{object.id}")
           output << content_tag(:li, li, :class => li_classes).html_safe
         end
 

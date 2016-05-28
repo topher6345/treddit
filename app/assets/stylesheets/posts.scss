@@ -36,6 +36,14 @@ aside {
     position: relative;
   }
 
+  section:before {
+    display: block;
+    content: " ";
+    margin-top: -285px;
+    height: 285px;
+    visibility: hidden;
+  }
+
   .depth-1 {
     background-color: $darker-background;
   }
