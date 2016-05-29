@@ -9,7 +9,7 @@
           %li= message
   .field
     = f.label :subtreddit
-    = f.select(:subtreddit_id, Subtreddit.all.pluck(:name, :id))
+    = f.select(:subtreddit_id, @subtreddits.pluck(:name, :id), selected: @pre_selected)
   .field
     = f.label :title
     = f.text_field :title, placeholder: '(required)'

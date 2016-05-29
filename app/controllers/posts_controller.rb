@@ -31,6 +31,9 @@ class PostsController < ApplicationController
   # Displays a form for creating a new Post.
   def new
     @post = Post.new
+    @subtreddits = Subtreddit.all
+    @pre_selected = @subtreddits.find_by_name!(params[:subtreddit]).id \
+      if params[:subtreddit]
   end
 
   # Creates a new post
@@ -44,7 +47,7 @@ class PostsController < ApplicationController
         format.html { redirect_to @post, notice: 'Post was successfully created.' }
         format.json { render :show, status: :created, location: @post }
       else
-        format.html { render :new }
+        format.html { redirect_to new_post_url }
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end
@@ -79,7 +82,7 @@ class PostsController < ApplicationController
 
     # Assigns instance variable containing all the comments of a post
     def set_comments
-       @comments = @post.comments
+      @comments = @post.comments
     end
 
     # Whitelists parameters that can be submitted to create a Post.

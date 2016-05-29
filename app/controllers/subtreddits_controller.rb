@@ -49,7 +49,7 @@ class SubtredditsController < ApplicationController
 
     respond_to do |format|
       if @subtreddit.save
-        format.html { redirect_to @subtreddit, notice: 'Subtreddit was successfully created.' }
+        format.html { redirect_to pretty_subtreddit_path(@subtreddit.name), notice: 'Subtreddit was successfully created.' }
         format.json { render :show, status: :created, location: @subtreddit }
       else
         format.html { render :new }
@@ -88,7 +88,7 @@ class SubtredditsController < ApplicationController
 
     # Finds a Subtreddit by name in URL. Ex: `tr/:name`
     def set_subtreddit
-      @subtreddit = Subtreddit.find_by(name: params[:name])
+      @subtreddit = Subtreddit.find_by!(name: params[:name])
     end
 
     # Defines whitelisted parameters used to create a new Subtreddit.
