@@ -29,7 +29,7 @@ class CommentsController < ApplicationController
     end
 
   rescue ActiveRecord::RecordInvalid => e
-    redirect_to @post, notice: @comment.try(:messages).try(:errors)
+    redirect_to post_path(@post.root), notice: e.message
   end
 
   private

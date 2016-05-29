@@ -10,13 +10,20 @@ class CommentsControllerTest < ActionController::TestCase
     parent_post = @post
 
     assert_difference('Post.count') do
-      post :create, post_id: parent_post.id, body: 'A comment', subtreddit_id: subtreddits(:one).id
+      process :create, method: :post, params: {
+        post_id: parent_post.id, body: 'A comment', subtreddit_id: subtreddits(:one).id
+      }
     end
 
-    assert_redirected_to post_path(parent_post)
+    @comment = assigns(:comment)
+    dom_id = "/#H#{@comment.id}"
+
+    assert_redirected_to post_path(@post.root.id)+dom_id
 
     assert_no_difference('Post.count') do
-      post :create, post_id: parent_post.id, body: nil, subtreddit_id: subtreddits(:one).id
+      process :create, method: :post, params: {
+        post_id: parent_post.id, body: nil, subtreddit_id: subtreddits(:one).id
+      }
     end
   end
 end

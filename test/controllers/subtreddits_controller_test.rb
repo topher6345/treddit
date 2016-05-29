@@ -39,7 +39,7 @@ class SubtredditsControllerTest < ActionController::TestCase
       process :create, method: :post, params: { subtreddit: subtreddit }
     end
 
-    assert_redirected_to subtreddit_path(assigns(:subtreddit))
+    assert_redirected_to pretty_subtreddit_path(assigns(:subtreddit).name)
   end
 
   test "should show subtreddit" do
