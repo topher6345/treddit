@@ -18,7 +18,7 @@ class CommentsController < ApplicationController
         @post.touch and @comment.ancestors.each(&:touch)
 
         broadcast_new_post @comment
-        dom_id = "/#H#{@comment.parent.id}"
+        dom_id = "/#H#{@comment.id}"
 
         format.html { redirect_to post_path(@post.root)+dom_id, notice: 'Post was successfully created.' }
         # format.json { render :show, status: :created, location: @post }
