@@ -1,8 +1,6 @@
 local: &local
-  url: redis://localhost:6379
+  url: <%= ENV['REDIS_URL'] %>
 
 development: *local
 test: *local
-
-production:
-  url: <%= ENV['REDISTOGO_URL'] %>
+production: *local
