@@ -2,6 +2,19 @@
 
 $(document).ready( ->
 
+  $.ajax
+    type: 'GET'
+    url: "/upvotes"
+    success: (data) ->
+      if data == undefined
+        console.log('not logged in')
+      else
+        console.log(data)
+        $('.post-upvote-arrow').each (index, elem) ->
+          id = parseInt(elem.dataset.id)
+          if data['votes'].includes(id)
+            $(elem).addClass('post-upvote-arrow-undo')
+
   # To collapse a post
   # TODO: make this collapse the children
   $('.collapser').on 'click', ->

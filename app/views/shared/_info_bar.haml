@@ -3,8 +3,8 @@
     = link_to 'Front Page', root_path
   %dd
     = link_to 'Live Stream', stream_index_path
-  - @subtreddits = Subtreddit.all.pluck(:name)
-  - cache @subtreddits do
+  - @subtreddits = Subtreddit.all
+  - cache "subtreddit-info-bar-#{@subtreddits.maximum(:updated_at).to_i}" do
     - @subtreddits.each do |subtreddit|
       %dd
-        = link_to subtreddit.capitalize, pretty_subtreddit_path(subtreddit)
+        = link_to subtreddit.name.capitalize, pretty_subtreddit_path(subtreddit.name)

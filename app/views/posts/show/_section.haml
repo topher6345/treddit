@@ -1,6 +1,12 @@
 - cache post do
-  = render 'posts/show/votes'  , post: post, cache: true
+  .post-vote-col
+    = content_tag(:i, '', class: "fi-arrow-up post-upvote-arrow", "data-id" => post.id)
   = render 'posts/show/header' , post: post, cache: true
   = render 'posts/show/article', post: post, cache: true
-  = render 'posts/show/nav'    , post: post, cache: true
-  = render 'posts/show/form'   , post: post, cache: true
+  %nav
+    %i.fi-comment
+    %a(class="reply-button" data-id="form--#{post.hash}")
+      reply
+  = form_tag(post_comment_path(post_id: post.id), method: 'post', id: "form--#{post.hash}", class: 'hide') do
+    %p= text_area_tag(:body, '')
+    = submit_tag("save", )

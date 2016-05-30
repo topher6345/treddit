@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   # Pretty URL to display all the posts in a Subtreddit.
   get 'tr/:name', to: 'subtreddits#show', as: 'pretty_subtreddit'
 
+  get 'upvotes', to: 'upvotes#index', as: 'upvotes'
+
   # Routes for Posts
   resources :posts, except: [:edit, :destroy] do
 
@@ -15,7 +17,7 @@ Rails.application.routes.draw do
     resource :comments, only: [:create], as: 'comment'
 
     # Endpoint to add an upvote to a post
-    resource :upvotes, only: [:create, :destroy]
+    resource :upvotes, except: [:index]
   end
 
   # Routes for Devise Users - login/signup etc.

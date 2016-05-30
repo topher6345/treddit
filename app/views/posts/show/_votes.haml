@@ -1,3 +1,3 @@
-- cache_if user_signed_in?, "votes-#{@user_votes}-post#{post.id}" do
+- cache post do
   .post-vote-col
-    = post_upvote(@user_votes, post.id) if user_signed_in?
+    = post_upvote(@user_votes, post.id)

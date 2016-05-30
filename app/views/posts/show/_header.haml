@@ -3,11 +3,11 @@
     %span.collapser
       [-]
     %span.post-show-user
-      = post_user(@post, post)
+      = content_tag(:span, post.email, class: "post-user")
       %i.fi-graph-trend.post-points
       %span.post-points
         = points(post.votes)
     %i.fi-clock
     %span.post-timestamps
       = post_timestamps(post)
-      = time_ago_in_words(post.updated_at)
+      / = "Last cached:"+time_ago_in_words(post.updated_at)

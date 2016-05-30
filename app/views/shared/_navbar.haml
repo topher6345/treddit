@@ -1,4 +1,4 @@
-- cache "user_signed_in- #{user_signed_in?}" do
+- cache "user-bar-#{user_signed_in? && current_user.id}" do
   .sticky
     %nav.top-bar{"data-topbar" => "", :role => "navigation"}
       %ul.title-area

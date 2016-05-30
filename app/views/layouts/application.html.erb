@@ -13,9 +13,9 @@
   </head>
 
   <body>
-  <%= render 'shared/navbar' %>
+  <%= render 'shared/navbar', cache: true %>
   <div class="posts-index">
-    <%= render 'shared/info_bar' %>
+    <%= render 'shared/info_bar', cache: true %>
     <%= yield %>
     </div>
   </body>

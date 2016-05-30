@@ -1,11 +1,5 @@
 module PostsHelper
 
-  def cache_key_for_post(post)
-    count          = post.descendants.count
-    max_updated_at = post.descendants.maximum(:updated_at).try(:utc).try(:to_s, :number)
-    "post/all-#{count}-#{max_updated_at}"
-  end
-
   def post_timestamps(post)
     output = ''
     output <<"#{time_ago_in_words(post.created_at)} ago"
@@ -15,24 +9,11 @@ module PostsHelper
     output
   end
 
-  def post_user(op=nil, post)
-    return post.email unless op.try(:user) == post.user
-    content_tag(:span, post.email, class: "post-root-user")
-  end
-
   def post_location(post)
     if post.link.blank?
       "(self.#{post.subtreddit.name})"
     else
       "(#{post.link})"
-    end
-  end
-
-  def post_upvote(votes, id)
-    if votes.include?(id)
-      content_tag(:i, '', class: "fi-arrow-up post-upvote-arrow-undo", "data-id" => id)
-    else
-      content_tag(:i, '', class: "fi-arrow-up post-upvote-arrow", "data-id" => id)
     end
   end
 

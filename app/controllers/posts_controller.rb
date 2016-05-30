@@ -76,7 +76,6 @@ class PostsController < ApplicationController
 
     # Assigns instance variable based on id of Post.
     def set_post
-      # @post = Post.find(params[:id])
       @post = Post.find(params[:id])
     end
 
@@ -98,6 +97,7 @@ class PostsController < ApplicationController
 
     # Assigns instance variable of all posts on which a user has voted.
     def set_user_votes
+      @user_votes = []
       @user_votes = current_user.votes.pluck(:post_id) if user_signed_in?
     end
 end
