@@ -3,3 +3,6 @@ local: &local
 
 development: *local
 test: *local
+
+production:
+  url: <%= ENV['REDISTOGO_URL'] %>
