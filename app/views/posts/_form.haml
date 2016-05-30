@@ -12,12 +12,12 @@
     = f.select(:subtreddit_id, @subtreddits.pluck(:name, :id), selected: @pre_selected)
   .field
     = f.label :title
-    = f.text_field :title, placeholder: '(required)'
+    = f.text_field :title, placeholder: '(required)', autocomplete: 'off'
   .field
     = f.label :link
-    = f.text_field :link, placeholder: '(optional)'
+    = f.text_field :link, placeholder: '(optional)', autocomplete: 'off'
   .field
     = f.label :body
-    = f.text_area :body
+    = f.text_area :body, autocomplete: 'off'
   .actions
     = f.submit
