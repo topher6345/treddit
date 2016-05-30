@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+bin/rake &&
+git push heroku master
