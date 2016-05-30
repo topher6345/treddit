@@ -1,6 +1,9 @@
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
+require 'simplecov'
+
+SimpleCov.start :rails
 
 TEST_PASSWORD = 'asdfjkl;'
 PASSWORD_DIGEST = User.new.send(:password_digest, TEST_PASSWORD)
