@@ -54,9 +54,6 @@ Rails.application.configure do
   # Use a different logger for distributed setups.
   # config.logger = ActiveSupport::TaggedLogging.new(SyslogLogger.new)
 
-  # Use a different cache store in production.
-  config.cache_store = :redis_store, ENV['REDISTOGO_URL']
-
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.action_controller.asset_host = 'http://assets.example.com'
 
@@ -88,7 +85,4 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
-
-  config.action_cable.url = 'ws://127.0.0.1:64319'
-  config.action_cable.allowed_request_origins = "https://pure-anchorage-1059.herokuapp.com"
 end
