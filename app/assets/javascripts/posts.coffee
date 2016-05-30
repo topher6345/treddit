@@ -2,18 +2,29 @@
 
 $(document).ready( ->
 
+  # == Highlight the upvote arrow of post you've already upvoted.
   $.ajax
     type: 'GET'
     url: "/upvotes"
     success: (data) ->
-      if data == undefined
-        console.log('not logged in')
-      else
-        console.log(data)
+      if data != undefined
         $('.post-upvote-arrow').each (index, elem) ->
           id = parseInt(elem.dataset.id)
           if data['votes'].includes(id)
             $(elem).addClass('post-upvote-arrow-undo')
+
+  (->
+    # == Highlight comments current_user made
+    #
+    # Scrape for the 'logged in as*'
+    logged_in_element = \
+    $('#current-user-email').text()
+
+    if logged_in_element != "Register"
+      re = /Logged in as (\w+.*)/
+      email = re.exec(logged_in_element).pop()
+      $('.post-user').each (i, elem) ->
+        $(elem).addClass('post-root-user') if $(elem).text() == email)()
 
   # To collapse a post
   # TODO: make this collapse the children
