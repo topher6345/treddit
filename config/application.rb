@@ -38,6 +38,5 @@ module Treddit
     config.active_record.raise_in_transactional_callbacks = true
 
     config.action_cable.mount_path = '/cable'
-    config.action_cable.allowed_request_origins = "http://localhost:5000"
   end
 end

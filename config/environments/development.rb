@@ -49,7 +49,6 @@ Rails.application.configure do
   #   Bullet.rails_logger = true
   # end
 
+  config.action_cable.allowed_request_origins = "http://localhost:5000"
   config.action_cable.url = 'ws://127.0.0.1:64319'
 end
-
-

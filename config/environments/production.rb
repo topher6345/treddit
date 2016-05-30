@@ -90,4 +90,5 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   config.action_cable.url = 'ws://127.0.0.1:64319'
+  config.action_cable.allowed_request_origins = "https://pure-anchorage-1059.herokuapp.com"
 end
