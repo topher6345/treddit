@@ -77,7 +77,7 @@ class PostsController < ApplicationController
     # Assigns instance variable based on id of Post.
     def set_post
       # @post = Post.find(params[:id])
-      @post = Post.includes(:subtreddit).includes(:user).find(params[:id])
+      @post = Post.find(params[:id])
     end
 
     # Assigns instance variable containing all the comments of a post
