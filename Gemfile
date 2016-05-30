@@ -20,27 +20,22 @@ gem 'redcarpet'
 gem 'puma'
 gem 'imgur_url'
 gem 'httparty'
-# gem 'newrelic_rpm'
-gem 'rack-mini-profiler', require: false
-gem 'flamegraph'
-gem 'stackprof'
+gem 'newrelic_rpm'
+gem 'rack-cache'
 gem 'web-console', '~> 2.0', group: :development
-gem 'faker'
-gem 'letter_opener'
 gem 'redis'
 gem 'redis-rails', '~> 5.0.0.pre'
-gem 'pry'
-gem 'quiet_assets', group: :development
 group :development, :test do
+  gem 'rack-mini-profiler', require: false
+  gem 'flamegraph'
+  gem 'stackprof'
+  gem 'letter_opener'
   gem 'spring'
   gem 'annotate'
-  gem 'quiet_assets'
   gem 'faker'
   gem 'bullet'
   gem 'brakeman'
   gem 'pry'
   gem 'simplecov'
+  gem 'rails-controller-testing'
 end
-
-gem 'rails-controller-testing'
-
