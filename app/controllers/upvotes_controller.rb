@@ -21,7 +21,8 @@ class UpvotesController < ApplicationController
 
   # Defines an endpoint to add an upvote to an existing Post.
   def create
-    Upvote.create! user: current_user, post: @post
+    Upvote.create! user: current_user, post: @post\
+      unless Vote.where(user: current_user, post: @post).exists?
     render json: { status: :ok }, status: :ok
   end
 
