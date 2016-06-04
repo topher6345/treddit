@@ -9,6 +9,9 @@ class CommentsController < ApplicationController
   # Sets an instance variable to interact with an existing Post record.
   before_action :set_post, only: [:create]
 
+  # Redirects to login page if no User session exists.
+  before_action :authenticate_user!, only: [:create]
+
   # Endpoint to create a comment or 'child Post' of an existing parent post.
   def create
     @comment = create_comment

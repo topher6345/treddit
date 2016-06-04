@@ -6,7 +6,7 @@
       = content_tag(:span, post.email, class: "post-user")
       %i.fi-graph-trend.post-points
       %span.post-points
-        = points(post.votes)
+        = points(post.votes.count)
     %i.fi-clock
     %span.post-timestamps
       = post_timestamps(post)

@@ -1,4 +1,4 @@
-- cache post do
+- cache post.cache_key+post.votes.cache_key do
   .post-vote-col
     = content_tag(:i, '', class: "fi-arrow-up post-upvote-arrow", "data-id" => post.id)
   = render 'posts/show/header' , post: post, cache: true

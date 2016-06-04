@@ -22,7 +22,7 @@ class SubtredditsController < ApplicationController
 
   # Displays a list of all Subtreddits in Treddit.
   def index
-    @subtreddits = Subtreddit.all
+    @subtreddits = Subtreddit.all.order(name: :asc)
   end
 
   # Displays the top Posts of a particular subtreddit accessed by name

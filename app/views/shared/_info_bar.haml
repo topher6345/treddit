@@ -3,7 +3,7 @@
     = link_to 'Front Page', root_path
   %dd
     = link_to 'Live Stream', stream_index_path
-  - @subtreddits = Subtreddit.all
+  - @subtreddits = Subtreddit.limit(5)
   - cache "subtreddit-info-bar-#{@subtreddits.maximum(:updated_at).to_i}" do
     - @subtreddits.each do |subtreddit|
       %dd

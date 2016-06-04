@@ -21,11 +21,12 @@ class PostsController < ApplicationController
   # Displays all the root level Posts.
   # Serves as the 'Front Page' endpoint.
   def index
-    @posts = Post.front_page
+    @posts = Post.where(ancestry_depth: 0).order(votes: :desc).limit(20)
   end
 
   # Displays a Post and its descendants
   def show
+    @votes = @post.votes
   end
 
   # Displays a form for creating a new Post.

@@ -41,6 +41,8 @@ class Post < ActiveRecord::Base
   # Defines relationship between Post and User
   belongs_to :user
 
+  has_many :votes
+
   # Defines relationship between Post and Subtreddit, so that
   # Posts can be viewed by Subtreddit.
   #
@@ -50,10 +52,6 @@ class Post < ActiveRecord::Base
 
   # Convenience method that a Post can display what User wrote the post.
   delegate :email, to: :user
-
-  # Defines a scope to query for front page
-  scope :front_page, -> { where(ancestry_depth: 0).
-                          order(votes: :desc) }
 
   # Queries all comments for a post
   def comments

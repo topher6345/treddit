@@ -23,6 +23,8 @@ class UpvotesController < ApplicationController
   def create
     Upvote.create! user: current_user, post: @post\
       unless Vote.where(user: current_user, post: @post).exists?
+
+    @post.root.touch
     render json: { status: :ok }, status: :ok
   end
 
