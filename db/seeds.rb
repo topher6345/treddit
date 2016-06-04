@@ -6,50 +6,94 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-ActionMailer::Base.perform_deliveries = false
+require "benchmark"
 
-require 'faker'
+SUBTREDDITS = 400
+USERS = 1200
+POSTS = 2200
+COMMENTS = 6800
 
+time = Benchmark.measure do
 
-PASSWORD = 'asdfjkl;'
-subtreddit_names = %w(Ruby Rails Music News Programming)
+ActiveRecord::Base.logger = nil
+  if Post.all.present?
+    puts 'Please drop database first'
+    exit(1)
+  end
 
-subtreddits = []
-subtreddit_names.each do |name|
-  subtreddits << Subtreddit.create!(name: name, description: Faker::Commerce.department)
-end
+  ActionMailer::Base.perform_deliveries = false
+  require 'faker'
 
-users = []
+  PASSWORD = 'asdfjkl;'
+  subtreddit_names = %w(Ruby Rails Music News Programming)
 
-User.create!(email: 'topher6345@gmail.com',
-                      password: PASSWORD,
-                      password_confirmation: PASSWORD).confirm
+  subtreddits = []
+  subtreddit_names.each do |name|
+    subtreddits << Subtreddit.create!(name: name, description: Faker::Commerce.department)
+  end
 
-20.times do
-  user = User.create!(email: Faker::Internet.email,
-                      password: PASSWORD,
-                      password_confirmation: PASSWORD)
-  user.confirm
-  users << user
-end
+  SUBTREDDITS.times do
+    begin
+      subtreddits << Subtreddit.create!(
+        name: Faker::Company.buzzword, description: Faker::Commerce.department)
+    rescue
+    end
+  end
 
-posts = []
-20.times do
-  posts << Post.create!(title: Faker::Company.catch_phrase,
-                        body: Faker::Hacker.say_something_smart,
+  users = []
+
+  root_user = User.create!(email: 'topher6345@gmail.com',
+                           password: ENV['SEED_PASSWORD'],
+                           password_confirmation: ENV['SEED_PASSWORD']).confirm
+
+  USERS.times do
+    user = User.create!(email: Faker::Internet.email,
+                        password: PASSWORD,
+                        password_confirmation: PASSWORD)
+    user.confirm
+    users << user
+  end
+
+  posts = []
+  posts << Post.create!(title: 'README',
+                        body: File.read(Rails.root.join('README.md')),
                         user: users.sample,
                         subtreddit: subtreddits.sample)
+
+  POSTS.times do
+    posts << Post.create!(title: Faker::Company.catch_phrase,
+                          body: [
+                            Faker::Hacker.say_something_smart,
+                            Faker::Hipster.paragraphs(rand(4) + 1).join(''),
+                            Faker::Hipster.sentences(rand(4) + 1).join(''),
+                            Faker::Superhero.name,
+                            Faker::StarWars.quote,
+                            [Faker::Superhero.power, Faker::Name.name].join(' ')
+                          ].sample,
+
+                          user: users.sample,
+                          subtreddit: subtreddits.sample)
+  end
+
+  COMMENTS.times do
+    posts << Comment.create!(body: [
+                            Faker::Hacker.say_something_smart,
+                            Faker::Hipster.paragraphs(rand(4) + 1).join(''),
+                            Faker::Hipster.sentences(rand(4) + 1).join(''),
+                            Faker::Superhero.name,
+                            Faker::StarWars.quote,
+                            [Faker::Superhero.power, Faker::Name.name].join(' ')
+                          ].sample,
+                             user: users.sample,
+                             parent: posts.sample)
+  end
+
+  while(Vote.count < 40)
+    Upvote.create!(user: users.sample, post: posts.sample) rescue Upvote::DuplicateUpvote
+  end
+
+
+  ActionMailer::Base.perform_deliveries = true
 end
 
-80.times do
-  posts << Comment.create!(body: Faker::Hacker.say_something_smart,
-                           user: users.sample,
-                           parent: posts.sample)
-end
-
-while(Vote.count < 40)
-  Upvote.create!(user: users.sample, post: posts.sample) rescue Upvote::DuplicateUpvote
-end
-
-
-ActionMailer::Base.perform_deliveries = true
+puts time
