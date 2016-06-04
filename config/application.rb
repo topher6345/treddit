@@ -37,7 +37,8 @@ module Treddit
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
     config.cache_store = :redis_store, ENV.fetch('REDIS_URL')
-
+    config.log_tags = [ :uuid ]
+    config.log_level = :debug
     config.action_cable.mount_path = '/cable'
     config.action_cable.allowed_request_origins = ENV.fetch('ALLOWED_REQUEST_ORIGINS')
     config.action_cable.url = ENV.fetch('ACTION_CABLE_URL')
