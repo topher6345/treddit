@@ -7,10 +7,13 @@ class CommentsController < ApplicationController
   include Broadcastable
 
   # Sets an instance variable to interact with an existing Post record.
-  before_action :set_post, only: [:create]
+  before_action :set_post
 
   # Redirects to login page if no User session exists.
-  before_action :authenticate_user!, only: [:create]
+  before_action :authenticate_user!
+
+  def new
+  end
 
   # Endpoint to create a comment or 'child Post' of an existing parent post.
   def create

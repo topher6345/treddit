@@ -1,0 +1,12 @@
+.post-show
+  %h2
+    = post_title(@post)
+    %span.post-location
+      = post_location(@post)
+  %section
+    = render 'posts/show/header' , post: @post, cache: true
+    = render 'posts/show/article', post: @post, cache: true
+    = form_tag(post_comment_path(post_id: @post.id), method: 'post', id: "form--#{@post.hash}") do
+      %p= text_area_tag(:body, '')
+      = submit_tag("save", )
+

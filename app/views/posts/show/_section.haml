@@ -5,8 +5,7 @@
   = render 'posts/show/article', post: post, cache: true
   %nav
     %i.fi-comment
-    %a(class="reply-button" data-id="form--#{post.hash}")
-      reply
+    = link_to 'reply', new_post_comment_path(post), class: "reply-button", 'data-id': "form--#{post.hash}"
   = form_tag(post_comment_path(post_id: post.id), method: 'post', id: "form--#{post.hash}", class: 'hide') do
     %p= text_area_tag(:body, '')
     = submit_tag("save", )

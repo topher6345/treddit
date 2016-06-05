@@ -51,9 +51,9 @@ $(document).ready( ->
         Turbolinks.visit(location.toString())
         Turbolinks.enableTransitionCache(false)
 
+  $('.reply-button').removeAttr('href')
   # Attaches click handler to reply to post button
   $('.reply-button').on 'click', ->
-
     # Toggles reply textarea
     $("##{$(this).data('id')}").toggleClass 'hide'
 

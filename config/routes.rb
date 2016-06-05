@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   resources :posts, except: [:edit, :destroy] do
 
     # Route to create a child Post (or comment) of a Post
-    resource :comments, only: [:create], as: 'comment'
+    resource :comments, only: [:create, :new], as: 'comment'
 
     # Endpoint to add an upvote to a post
     resource :upvotes, except: [:index]
