@@ -1,5 +1,12 @@
-%h1 Live Stream
-%ul#live-stream
+%dl.sub-nav
+  %dt
+    Live Stream
+  %dt
+    Newests posts updated in Realtime
+#live-stream
   - @posts.each do |post|
-    %li
-      = render 'stream/index/post', post: post, cache: true
+    .row.post-row
+      .small-1.columns
+        = render 'posts/index/vote_col', post: post, index: 0, cache: true
+      .small-11.columns
+        = render 'stream/index/post', post: post, index: 0, cache: true

@@ -1,12 +1,17 @@
 - cache post do
-  = post_location(post)
-  = link_to post.title || 'link', post_path(post)
-  &middot;
-  = time_ago_in_words(post.created_at)
-  ago
-  - if post.parent
-    &middot;
-    = link_to 'context', post_path(post.parent)
-    &middot;
-    = link_to 'OP', post_path(post.root)
-  = render 'posts/show/article', post: post, cache: true
+  %header
+    = truncate post.body
+    %span.post-location
+      = post_location(post)
+  %aside
+    submitted #{time_ago_in_words(post.created_at)} ago by
+    %span.post-user
+      = post.email
+    = post_aside(post)
+  %nav
+    = link_to comments(post.descendants_depth), post
+    - if post.parent
+      &middot;
+      = link_to 'context', post_path(post.parent)
+      &middot;
+      = link_to 'OP', post_path(post.root)

@@ -1,4 +1,9 @@
 - cache @posts do
+  %dl.sub-nav
+    %dt
+      Front Page
+    %dt
+      Hottest posts on Treddit
   - @posts.each.with_index(1) do |post, index|
     .row.post-row
       - if imgur_link = post_imgur_link(post.link)

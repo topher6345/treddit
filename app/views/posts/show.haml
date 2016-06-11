@@ -1,4 +1,9 @@
 - cache @post do
+  %dl.sub-nav
+    %dt
+      = @post.subtreddit.name
+    %dt
+      = @post.subtreddit.description
   .post-row
     - if imgur_link = post_imgur_link(@post.link)
       .small-1.columns
