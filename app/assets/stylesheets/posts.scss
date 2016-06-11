@@ -11,6 +11,13 @@ header {
   font-size: 2em;
 }
 
+.post-body-inner {
+  background-color: $darker-background;
+  border: 1px solid lightgrey;
+  margin: 5px;
+  padding: 10px;
+}
+
 aside {
   color: $aside-text;
   font-weight: 400;
@@ -80,6 +87,11 @@ aside {
 
   li {
     list-style: none;
+    margin-right: 1.1rem;
+    margin-bottom: 0.6rem;
+  }
+
+  ul {
   }
 
   nav {

@@ -1,11 +1,28 @@
 - cache @post do
+  .post-row
+    - if imgur_link = post_imgur_link(@post.link)
+      .small-1.columns
+        = render 'posts/index/vote_col', post: @post, index: 0, cache: true
+      .small-1.columns
+        = imgur_link
+      .small-10.columns
+        = render 'posts/index/post_row', post: @post, index: 0, cache: true
+    - else
+      .small-1.columns
+        = render 'posts/index/vote_col', post: @post, index: 0, cache: true
+      .small-11.columns
+        = render 'posts/index/post_row', post: @post, index: 0, cache: true
+  .post-row.row
+    .small-1.columns
+    .small-11.columns
+      %article
+        .post-body
+          .post-body-inner
+            = markdown @post.body
   .post-show
-    %h2
-      = post_title(@post)
-      %span.post-location
-        = post_location(@post)
-    %section
-      = render 'posts/show/section', post: @post, cache: true
-      = arranged_tree_as_list(@comments) do |post|
-        = render 'posts/show/section', post: post, cache: true
+    %hr
+    %h3
+      Comments
+    = arranged_tree_as_list(@comments) do |post|
+      = render 'posts/show/section', post: post, cache: true
 
