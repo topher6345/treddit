@@ -23,11 +23,14 @@ $(document).ready( ->
     if logged_in_element != "Register"
       re = /Logged in as (\w+.*)/
       email = re.exec(logged_in_element).pop()
+
+      # Add highlight to the user email of the current user.
       $('.post-user').each (i, elem) ->
         $(elem).addClass('post-root-user') if $(elem).text() == email)()
 
+  $('.collapser').append('[-]')
+
   # To collapse a post
-  # TODO: make this collapse the children
   $('.collapser').on 'click', ->
     $(this).parent().parent().toggleClass 'post-collapse'
 
@@ -51,7 +54,9 @@ $(document).ready( ->
         Turbolinks.visit(location.toString())
         Turbolinks.enableTransitionCache(false)
 
+  # If we have javascript, then remove reply href
   $('.reply-button').removeAttr('href')
+
   # Attaches click handler to reply to post button
   $('.reply-button').on 'click', ->
     # Toggles reply textarea
