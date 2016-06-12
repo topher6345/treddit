@@ -7,14 +7,14 @@
   .post-row
     - if imgur_link = post_imgur_link(@post.link)
       .small-1.columns
-        = render 'posts/index/vote_col', post: @post, index: 0, cache: true
+        = render 'posts/index/vote_col', count: @post.votes.count, index: 0, cache: true
       .small-1.columns
         = imgur_link
       .small-10.columns
         = render 'posts/index/post_row', post: @post, index: 0, cache: true
     - else
       .small-1.columns
-        = render 'posts/index/vote_col', post: @post, index: 0, cache: true
+        = render 'posts/index/vote_col', count: @post.votes.count, index: 0, cache: true
       .small-11.columns
         = render 'posts/index/post_row', post: @post, index: 0, cache: true
   .post-row.row
