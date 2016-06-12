@@ -50,7 +50,7 @@ class CommentsController < ApplicationController
   end
 
   def create_comment
-    Comment.new(
+    Comment.create!(
       body:   comment_params[:body],
       parent: comment_params[:parent],
       user:   comment_params[:user]

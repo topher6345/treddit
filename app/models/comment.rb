@@ -14,7 +14,9 @@
 
 class Comment
   extend Forwardable
-  def_delegators :@comment, :messages, :errors, :link, :subtreddit, :title, :created_at, :parent, :root, :body, :id, :cache_key, :ancestors, :siblings
+  def_delegators :@comment, 
+    :messages, :errors, :link, :subtreddit, :title, :created_at, :parent, 
+    :root, :body, :id, :cache_key, :ancestors, :siblings, :email, :descendants_depth
 
   # Creates a Comment for a parent post and returns created post
   def self.create!(attributes)
@@ -51,5 +53,9 @@ class Comment
       post.touch
       post.increment(:descendants_depth).save!
     end
+  end
+
+  def to_model
+    Post
   end
 end
