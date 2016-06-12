@@ -14,7 +14,7 @@ class UpvoteTest < ActiveSupport::TestCase
   end
 
   test 'upvote increments a posts vote count' do
-    assert_difference('@post.votes') do
+    assert_difference('@post.votes.count') do
       Upvote.create!(user: @user, post: @post)
     end
   end
@@ -36,11 +36,11 @@ class UpvoteTest < ActiveSupport::TestCase
   end
 
   test 'user decrements a posts vote count' do
-    assert_difference('@post.votes') do
+    assert_difference('@post.votes.count') do
       Upvote.create!(user: @user, post: @post)
     end
 
-    assert_difference('@post.votes', -1) do
+    assert_difference('@post.votes.count', -1) do
       Upvote.destroy_all!(user: @user, post: @post)
     end
   end
