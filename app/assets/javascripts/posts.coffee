@@ -45,9 +45,7 @@ $(document).on('turbolinks:load', ->
       type: 'POST'
       url: "/posts/#{$(this).data('id')}/upvotes"
       success: ->
-        Turbolinks.enableTransitionCache(true)
         Turbolinks.visit(location.toString())
-        Turbolinks.enableTransitionCache(false)
 
   # Attaches click handler to AJAX remove an upvote on a post
   $('.post-upvote-arrow-undo').on 'click', ->
@@ -55,9 +53,7 @@ $(document).on('turbolinks:load', ->
       type: 'DELETE'
       url: "/posts/#{$(this).data('id')}/upvotes"
       success: ->
-        Turbolinks.enableTransitionCache(true)
         Turbolinks.visit(location.toString())
-        Turbolinks.enableTransitionCache(false)
 
   # If we have javascript, then remove reply href
   $('.reply-button').removeAttr('href')
