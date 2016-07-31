@@ -27,7 +27,7 @@
   .post-show
     %hr
     %h3
-      Comments
+      = "#{@comments.count} comments"
     = arranged_tree_as_list(@comments) do |post|
       = render 'posts/show/section', post: post, cache: true
 
