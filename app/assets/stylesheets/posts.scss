@@ -182,7 +182,6 @@ aside {
 
 .vote-col {
   margin: 0 auto;
-  min-width: 4em;
   text-align: center;
   padding-top: 1em;
   line-height: 1em;
@@ -199,4 +198,10 @@ aside {
 
 .post-focus {
   background-color: #ffffe9 !important;
+}
+
+@media (min-width: 1200px) {
+  .vote-col {
+    min-width: 4em;
+  }
 }
