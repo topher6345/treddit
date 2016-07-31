@@ -1,4 +1,4 @@
-- cache @post do
+- cache @post.cache_key+@post.descendants_depth.to_s do
   %dl.sub-nav
     %dt
       = @post.subtreddit.name
@@ -27,7 +27,11 @@
   .post-show
     %hr
     %h3
-      = "#{@comments.count} comments"
-    = arranged_tree_as_list(@comments) do |post|
-      = render 'posts/show/section', post: post, cache: true
+      = "#{@post.descendants_depth} comments"
+    - if @comments.empty?
+      No one has made a comment here yet.
+      = link_to 'You could be the first!', new_post_comment_path(@post)
+    - else
+      = arranged_tree_as_list(@comments) do |post|
+        = render 'posts/show/section', post: post, cache: true
 
