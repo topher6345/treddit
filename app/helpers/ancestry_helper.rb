@@ -19,16 +19,6 @@ module AncestryHelper
       :sort_by              => []
     }.merge(options)
 
-    # setup any custom list styles you want to use here. An example is excluded
-    # to render bootstrap style list groups. This is used to keep from recoding the same
-    # options on different lists
-    case options[:list_style]
-      when :bootstrap_list_group
-        options[:ul_class] << ['list-group']
-        options[:li_class] << ['list-group-item']
-    end
-    options[:list_style] = ''
-
     output = ''
 
     # sort the hash key based on sort_by options array
@@ -39,25 +29,24 @@ module AncestryHelper
     current_depth = 0
     # and here... we... go...
     hash.each do |object, children|
-        section = capture(object, &block)
-        li_classes = options[:li_class]
+      section = capture(object, &block)
+      li_classes = options[:li_class]
 
-        if object.ancestry_depth == 0
-          li_classes += options[:li_class_top]
-        else
-          li_classes += options[:li_class_children]
-        end
+      if object.ancestry_depth == 0
+        li_classes += options[:li_class_top]
+      else
+        li_classes += options[:li_class_children]
+      end
 
-        current_depth = object.ancestry_depth
-        if children.size > 0
-          li = content_tag(:section, section + arranged_tree_as_list(children, options, &block).html_safe, class: :"depth-#{current_depth % 2}", :id => "H#{object.id}")
-          # li = section + arranged_tree_as_list(children, options, &block).html_safe
-          output << content_tag(:li, li,  :class => li_classes)
-        else
-          li = content_tag(:section, section, class: :"depth-#{current_depth % 2}", :id => "H#{object.id}")
-          output << content_tag(:li, li, :class => li_classes).html_safe
-        end
-
+      current_depth = object.ancestry_depth
+      if children.size > 0
+        li = content_tag(:section, section + arranged_tree_as_list(children, options, &block).html_safe, class: :"depth-#{current_depth % 2}", :id => "H#{object.id}")
+        # li = section + arranged_tree_as_list(children, options, &block).html_safe
+        output << content_tag(:li, li,  :class => li_classes)
+      else
+        li = content_tag(:section, section, class: :"depth-#{current_depth % 2}", :id => "H#{object.id}")
+        output << content_tag(:li, li, :class => li_classes).html_safe
+      end
     end
 
     unless output.blank?
