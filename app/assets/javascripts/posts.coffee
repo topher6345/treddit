@@ -1,6 +1,11 @@
 # Click handlers for interacting with posts
 
-$(document).ready( ->
+$(document).on('turbolinks:load', ->
+
+  #== if you are redirected to a specific child post
+  #== then highlight the box
+  if window.location.hash
+    $(window.location.hash).addClass('post-focus')
 
   # == Highlight the upvote arrow of post you've already upvoted.
   $.ajax
