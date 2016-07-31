@@ -19,5 +19,3 @@
 "use strict";
 
 $(function(){ $(document).foundation(); });
-
-Turbolinks.enableProgressBar();
