@@ -7,6 +7,6 @@
     = render 'posts/show/header' , post: @post, cache: true
     = render 'posts/show/article', post: @post, cache: true
     = form_tag(post_comment_path(post_id: @post.id), method: 'post', id: "form--#{@post.hash}") do
-      %p= text_area_tag(:body, '')
+      %p= text_area_tag(:body, '', autofocus: "autofocus")
       = submit_tag("save", )
 
