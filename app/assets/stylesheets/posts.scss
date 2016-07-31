@@ -8,7 +8,7 @@ $primary-color: #008CBA;
 }
 
 header {
-  font-size: 2em;
+  font-size: 1.2em;
 }
 
 .post-body-inner {
@@ -197,6 +197,12 @@ aside {
 
 .post-focus {
   background-color: #ffffe9 !important;
+}
+
+@media (min-width: 600px) {
+  header {
+    font-size: 2em;
+  }
 }
 
 @media (min-width: 1200px) {
