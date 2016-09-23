@@ -3,22 +3,22 @@
     = @subtreddit.name
   %dt
     = @subtreddit.description
-
-- if @posts.empty?
-  No one has made a post here yet.
-  = link_to 'You could be the first!', new_post_path(subtreddit: @subtreddit.name)
-- else
-  - @posts.each.with_index(1) do |post, index|
-    .row.post-row
-      - if imgur_link = post_imgur_link(post.link)
-        .small-1.columns
-          = render 'posts/index/vote_col', count: post.votes.count, index: index, cache: true
-        .small-1.columns
-          = imgur_link
-        .small-10.columns
-          = render 'posts/index/post_row', post: post, index: index, cache: true
-      - else
-        .small-1.columns
-          = render 'posts/index/vote_col', count: post.votes.count, index: index, cache: true
-        .small-11.columns
-          = render 'posts/index/post_row', post: post, index: index, cache: true
+- cache @posts do
+  - if @posts.empty?
+    No one has made a post here yet.
+    = link_to 'You could be the first!', new_post_path(subtreddit: @subtreddit.name)
+  - else
+    - @posts.each.with_index(1) do |post, index|
+      .row.post-row
+        - if imgur_link = post_imgur_link(post.link)
+          .small-1.columns
+            = render 'posts/index/vote_col', post: post, count: post.votes.count, index: index, cache: true
+          .small-1.columns
+            = imgur_link
+          .small-10.columns
+            = render 'posts/index/post_row', post: post, index: index, cache: true
+        - else
+          .small-1.columns
+            = render 'posts/index/vote_col', post: post, count: post.votes.count, index: index, cache: true
+          .small-11.columns
+            = render 'posts/index/post_row', post: post, index: index, cache: true

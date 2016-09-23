@@ -21,7 +21,7 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if @comment.save!
-        @post.touch and @comment.ancestors.each(&:touch)
+        @post.touch && @comment.ancestors.each(&:touch)
 
         broadcast_new_post @comment
         dom_id = "/#H#{@comment.id}"

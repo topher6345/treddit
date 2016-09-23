@@ -8,13 +8,13 @@
     .row.post-row
       - if imgur_link = post_imgur_link(post.link)
         .small-1.columns
-          = render 'posts/index/vote_col', count: post.votes.count, index: index, cache: true
+          = render 'posts/index/vote_col', count: post.votes.count, post: post, index: index, cache: true
         .small-1.columns
           = imgur_link
         .small-10.columns
           = render 'posts/index/post_row', post: post, index: index, cache: true
       - else
         .small-1.columns
-          = render 'posts/index/vote_col', count: post.votes.count, index: index, cache: true
+          = render 'posts/index/vote_col', count: post.votes.count, post: post , index: index, cache: true
         .small-11.columns
           = render 'posts/index/post_row', post: post, index: index, cache: true

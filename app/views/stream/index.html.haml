@@ -7,6 +7,6 @@
   - @posts.each do |post|
     .row.post-row
       .small-1.columns
-        = render 'posts/index/vote_col', count: post.votes.count, index: 0, cache: true
+        = render 'posts/index/vote_col', post: post, count: post.votes.count, index: 0, cache: true
       .small-11.columns
         = render 'stream/index/post', post: post, index: 0, cache: true

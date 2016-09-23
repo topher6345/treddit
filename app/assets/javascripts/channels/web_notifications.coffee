@@ -4,4 +4,5 @@ App.cable.subscriptions.create channel: "WebNotificationsChannel",
   connected: ->
     console.log("connected to WebNotificationsChannel")
   received: (html) ->
+    console.log("received from WebNotificationsChannel")
     $('ul#live-stream').prepend(html)

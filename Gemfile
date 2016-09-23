@@ -11,7 +11,8 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'ancestry'
-gem 'haml-rails'
+gem 'hamlit'
+
 gem 'devise'
 gem 'jquery-turbolinks'
 gem 'foundation-icons-sass-rails'

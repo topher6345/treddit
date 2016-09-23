@@ -1,0 +1,14 @@
+# SHIP IT
+alias qwer=git push heroku master # Always Be Shipping
+
+# RUN IT
+alias fdsa=fs | tee log/development.log # print to stdout and logfile (for tailing and grepping)
+
+## COMMIT IT
+alias asdf=git push origin master # Commit early and often
+
+# TEST IT
+alias zxcv='LOG_LEVEL=info bin/rake test | tee log/test.log'
+
+# MEASURE IT
+alias vcxz=open coverage/index.html

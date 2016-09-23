@@ -1,8 +1,8 @@
-- cache "count-#{count}-index-#{index}" do
+- cache "count-#{count}-index-#{index}-post-#{post.id}" do
   .index-col
     = index
   .vote-col
     .upvote
-      = content_tag(:i, '', class: "fi-arrow-up")
+    = content_tag(:i, '', class: "fi-arrow-up", "data-id" => post.id)
     .vote-count
       = count

@@ -10,9 +10,10 @@
       %th Description
 
   %tbody
-    - @subtreddits.each do |subtreddit|
-      %tr
-        %td
-          = link_to "tr/#{subtreddit.name}", pretty_subtreddit_path(subtreddit.name)
-        %td= subtreddit.description
+    - cache @subtreddits do
+      - @subtreddits.each do |subtreddit|
+        %tr
+          %td
+            = link_to "tr/#{subtreddit.name}", pretty_subtreddit_path(subtreddit.name)
+          %td= subtreddit.description
 
