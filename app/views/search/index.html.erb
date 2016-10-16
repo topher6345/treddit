@@ -18,8 +18,47 @@
       <%= link_to post.root.title, post_path(post.root)+"#H#{post.id}" %>
       <small> in tr/<%= post.subtreddit.name %></small>
       </h3>
-      
+
       <%= post.body %>
     </li>
   <% end %>
 </ul>
+  <%= text_field_tag(:q, @query, required: :required, autofocus: true) %>
+  <%= submit_tag("Search") %>
+<% end %>
+
+
+
+<% cache "searches/#{CGI::escape(@query)}", expires_in: 1.minute do %>
+  <% @hits, @results = Post.search_query(@query) %>
+  <% @hitcount = @hits.try(:count) %>
+  <%= @hitcount %> results for <em><%= @query %></em>
+  <ul>
+
+
+  <% if @hitcount.zero? %>
+      <h3> Tips </h3>
+      <li> Add <pre style="display: inline;">*</pre> to search Ex. <pre style="display: inline;">jo*</pre> will find Giant <b>Jo</b>lt</pre>
+      </li>
+  <% else %>
+
+    <% @results.zip(@hits).each do |post, hit|%>
+      <li>
+        <h3><small>
+        <% if post.ancestry_depth.zero? %>
+          [Post]
+        <% else %>
+          [Comment]
+        <% end %>
+        </small>
+        <%= link_to post.root.title, post_path(post.root)+"#H#{post.id}" %>
+        <small> in tr/<%= post.subtreddit.name %></small>
+        </h3>
+        <% hit.highlights(:body).each do |highlight| %>
+          <%= highlight.format {|w| "<b>#{w}</b>" }.html_safe %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+  <% end %>
+<% end %>

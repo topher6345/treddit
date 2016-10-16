@@ -23,7 +23,7 @@
           %ul.right
             = form_tag("/search", method: "get") do
               %li
-                = text_field_tag(:q)
+                = text_field_tag(:q, nil, required: :required)
               %li
                 = submit_tag("Search")
             %li

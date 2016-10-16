@@ -59,4 +59,13 @@ class Post < ActiveRecord::Base
   def comments
     descendants.arrange(order: 'votes DESC')
   end
+
+  def self.search_query(query)
+    search = Post.search do
+      fulltext query do
+        highlight :body
+      end
+    end
+    [search.hits, search.results]
+  end
 end
