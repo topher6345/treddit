@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'search', to: 'search#index'
+
   get 'stream/index'
 
   # Makes root path 'front page' or Posts#index

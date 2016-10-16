@@ -1,0 +1,25 @@
+<%= form_tag("/search", method: "get", style: "display: inline;") do %>
+  <div>Search</div>
+  <%= text_field_tag(:q, @query) %>
+  <%= submit_tag("Search") %>
+<% end %>
+
+<%= @hitcount %> results for <em><%= @query %></em>
+<ul>
+  <% @results.each do |post|%>
+    <li>
+      <h3><small>
+      <% if post.ancestry_depth.zero? %>
+        [Post]
+      <% else %>
+        [Comment]
+      <% end %>
+      </small>
+      <%= link_to post.root.title, post_path(post.root)+"#H#{post.id}" %>
+      <small> in tr/<%= post.subtreddit.name %></small>
+      </h3>
+      
+      <%= post.body %>
+    </li>
+  <% end %>
+</ul>

@@ -37,6 +37,12 @@ body {
 }
 
 
+.top-bar-section {
+  form {
+    display: inline;
+  }
+}
+
 @media (max-width: 876px) {
   .nav-motto {
     display: none;

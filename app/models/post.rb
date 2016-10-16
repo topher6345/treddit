@@ -28,7 +28,9 @@
 # Posts can be roots (OP or original posts.)
 # or can be comments (Posts whos parent node is another Post.)
 class Post < ActiveRecord::Base
-
+  searchable do
+    text :body, stored: true
+  end
   # Caches how many descendants (comments) a Post may have
   #
   #   https://github.com/stefankroes/ancestry#options-for-has_ancestry

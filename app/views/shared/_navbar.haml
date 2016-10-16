@@ -21,6 +21,11 @@
               = link_to('Logout', destroy_user_session_path, :method => :delete)
         - else
           %ul.right
+            = form_tag("/search", method: "get") do
+              %li
+                = text_field_tag(:q)
+              %li
+                = submit_tag("Search")
             %li
               = link_to('Login', new_user_session_path)
             %li

@@ -16,3 +16,6 @@ coverage
 .yardoc/
 .env
 public/assets/
+solr/test
+solr/development
+solr/default/data
