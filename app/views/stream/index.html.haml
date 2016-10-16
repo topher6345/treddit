@@ -1,0 +1,8 @@
+%dl.sub-nav
+  %dt
+    Live Stream
+  %dt
+    Newests posts updated in Realtime
+#live-stream
+  - @posts.each do |post|
+    = render 'stream/index/post', post: post, index: 0, cache: true
