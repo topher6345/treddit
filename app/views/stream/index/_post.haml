@@ -1,17 +1,21 @@
-- cache post do
-  %header
-    = truncate post.body
-    %span.post-location
-      = post_location(post)
-  %aside
-    submitted #{time_ago_in_words(post.created_at)} ago by
-    %span.post-user
-      = post.email
-    = post_aside(post)
-  %nav
-    = link_to comments(post.descendants_depth), post
-    - if post.parent
-      &middot;
-      = link_to 'context', post_path(post.parent)
-      &middot;
-      = link_to 'OP', post_path(post.root)
+.row.post-row
+  .small-1.columns
+    = render 'posts/index/vote_col', post: post, count: post.votes.count, index: 0, cache: true
+  .small-11.columns
+    - cache post do
+      %header
+        = truncate post.body
+        %span.post-location
+          = post_location(post)
+      %aside
+        submitted #{time_ago_in_words(post.created_at)} ago by
+        %span.post-user
+          = post.email
+        = post_aside(post)
+      %nav
+        = link_to comments(post.descendants_depth), post
+        - if post.parent
+          &middot;
+          = link_to 'context', post_path(post.parent)
+          &middot;
+          = link_to 'OP', post_path(post.root)
