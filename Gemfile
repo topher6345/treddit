@@ -37,6 +37,7 @@ group :development, :test do
   gem 'bullet'
   gem 'brakeman'
   gem 'pry'
+  gem 'pry-rails'
   gem 'simplecov'
   gem 'rails-controller-testing'
 end
