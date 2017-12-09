@@ -24,7 +24,7 @@ gem 'httparty'
 gem 'newrelic_rpm'
 gem 'web-console', '~> 2.0', group: :development
 gem 'redis'
-gem 'redis-rails', '~> 5.0.0.pre'
+gem 'redis-rails', '~> 5.0.2'
 group :development, :test do
   gem 'dotenv-rails'
   gem 'rack-mini-profiler', require: false
